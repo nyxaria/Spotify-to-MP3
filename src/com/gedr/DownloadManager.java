@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.util.Random;
 
 /**
  * Created by gedr on 30/07/2016.
@@ -90,6 +91,7 @@ public class DownloadManager {
     public void nextTrack() {
         if (trackIndex < currentPlaylist.tracks.length) {
             attempt = 1;
+            retry = 0;
             currentTrack = currentPlaylist.tracks[trackIndex++];
             String artist = "";
             for (String s : currentTrack.artists) {
@@ -128,6 +130,8 @@ public class DownloadManager {
 
                 url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
+            case 4:
+                return "next_track";
         }
             //videoDuration=short/medium
             Document doc = null;
@@ -151,7 +155,11 @@ public class DownloadManager {
         } catch (net.sf.json.JSONException e) {
             findYoutubeUri(track, ++attempt);
         }
-        if(new Math.random())
+
+        if(new Random().nextInt(10000) == 1) {
+            id = "dQw4w9WgXcQ";
+        }
+
         url = "https://www.googleapis.com/youtube/v3/videos?id="+id+"&part=contentDetails&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
         doc = null;
 
@@ -236,11 +244,24 @@ public class DownloadManager {
         label.revalidate();
     }
 
+    int retry = 0;
     public void downloadTrack(String name, String artist, String url) {
-        executeCommand(new String[]{Main.youtube_dl, "--audio-quality", "0", "-o", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", url});
-        executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
+        if(url.equals("next_track")) {
+            nextTrack();
+        } else {
+            try {
+                executeCommand(new String[]{Main.youtube_dl, "--audio-quality", "0", "-o", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", url});
+                executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
 
-        nextTrack();
+            } catch (Exception e) {
+                if(retry++ <= 3)
+                    downloadTrack(name, artist, url);
+                else
+                    nextTrack();
+            }
+
+            nextTrack();
+        }
     }
 
     private String executeCommand(String[] commands) {
