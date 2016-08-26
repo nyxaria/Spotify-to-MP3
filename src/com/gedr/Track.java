@@ -10,11 +10,12 @@ public class Track {
     public double popularity;
     public String target;
     public String videoTarget;
-    public JLabel gui;
+    public GraphicLabel gui;
     public int duration;
     public int ytDuration;
 
     public static int MAX_WIDTH;
+    public String id = "";
 
     public Track(String name, String[] artists, String album, boolean explicit, int popularity, int dur) {
         this.name = name;

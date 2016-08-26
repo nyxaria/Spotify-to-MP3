@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
 import java.io.*;
 import java.util.Random;
 
@@ -105,22 +106,44 @@ public class DownloadManager {
     }
 
     int attempt = 1;
+
     public String findYoutubeUri(Track track, int i) {
         String url = "";
-        switch(i) {
+        if (track.id.equals("next_track")) {
+            return "next_track";
+        }
+        if (!track.id.equals("")) {
+            return "https://www.youtube.com/watch?v=" + track.id;
+        }
+        switch (i) {
             case 1:
                 String keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official";
                 keyword = keyword.replace(" ", "+");
-                String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short");
-                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
+                String quality = "videoDefinition=high&";
+                //String duration = "";
+                url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name + " " + track.artists[0] + (track.explicit ? " explicit" : "") + "lyrics";
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official";
                 keyword = keyword.replace(" ", "+");
-
-                url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
+                //String duration = "";
+                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
+                keyword = track.name + " " + track.artists[0] + (track.explicit ? " explicit" : "") + " lyrics";
+                keyword = keyword.replace(" ", "+");
+
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                break;
+            case 4:
+                keyword = track.name + " " + track.artists[0];
+                keyword = keyword.replace(" ", "+");
+
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                break;
+            case 5:
                 if (track.artists.length > 1)
                     keyword = track.name + " " + track.artists[1];
                 else
@@ -128,59 +151,72 @@ public class DownloadManager {
 
                 keyword = keyword.replace(" ", "+");
 
-                url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
-            case 4:
+            case 6:
+                track.id = "next_track";
                 return "next_track";
         }
-            //videoDuration=short/medium
-            Document doc = null;
-
-            try {
-                doc = Jsoup.connect(url).ignoreContentType(true).timeout(6 * 1000).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            JSONObject ob = ((JSONObject) new JSONTokener(doc.text()).nextValue());
-
-            JSONArray array = ob.getJSONArray("items");
-
-
-        if(array.isEmpty()) {
-            findYoutubeUri(track, ++attempt);
-        }
-        String id = "";
-        try {
-            id = array.getJSONObject(0).getJSONObject("id").getString("videoId");
-        } catch (net.sf.json.JSONException e) {
-            findYoutubeUri(track, ++attempt);
-        }
-
-        if(new Random().nextInt(10000) == 1) {
-            id = "dQw4w9WgXcQ";
-        }
-
-        url = "https://www.googleapis.com/youtube/v3/videos?id="+id+"&part=contentDetails&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
-        doc = null;
+        //videoDuration=short/medium
+        Document doc = null;
 
         try {
-            doc = Jsoup.connect(url).ignoreContentType(true).timeout(4 * 1000).get();
+            doc = Jsoup.connect(url).ignoreContentType(true).timeout(6 * 1000).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        JSONObject ob = ((JSONObject) new JSONTokener(doc.text()).nextValue());
 
-        array = ((JSONObject) new JSONTokener(doc.text()).nextValue()).getJSONArray("items");
-        track.ytDuration = getDuration(array.getJSONObject(0).getJSONObject("contentDetails").getString("duration"));
-        return "https://www.youtube.com/watch?v=" + id;
+        JSONArray array = ob.getJSONArray("items");
+
+
+        if (array.isEmpty()) {
+            System.out.println("attempt " + (attempt) + " at getting URL...");
+            findYoutubeUri(track, ++attempt);
+            if(track.id.equals("next_track"))
+                return "next_track";
+        } else {
+            System.out.println("URL obtained!");
+        }
+        try {
+            track.id = array.getJSONObject(0).getJSONObject("id").getString("videoId");
+        } catch (Exception e) {
+            findYoutubeUri(track, ++attempt);
+            if(track.id.equals("next_track"))
+                return "next_track";
+        }
+
+        if (new Random().nextInt(100000) == 1) {
+            //track.id = "dQw4w9WgXcQ";
+        }
+
+        if (track.ytDuration == 0) {
+            url = "https://www.googleapis.com/youtube/v3/videos?id=" + track.id + "&part=contentDetails&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+            doc = null;
+
+            try {
+                doc = Jsoup.connect(url).ignoreContentType(true).timeout(4 * 1000).get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                array = ((JSONObject) new JSONTokener(doc.text()).nextValue()).getJSONArray("items");
+                track.ytDuration = getDuration(array.getJSONObject(0).getJSONObject("contentDetails").getString("duration"));
+            } catch (Exception e) {
+                return "https://www.youtube.com/watch?v=" + track.id;
+            }
+        }
+        return "https://www.youtube.com/watch?v=" + track.id;
     }
 
     public int getDuration(String time) {
         time = time.substring(2);
         int duration = 0;
         Object[][] indexs = new Object[][]{{"H", 3600}, {"M", 60}, {"S", 1}};
-        for(int i = 0; i < indexs.length; i++) {
+        for (int i = 0; i < indexs.length; i++) {
             int index = time.indexOf((String) indexs[i][0]);
-            if(index != -1) {
+            if (index != -1) {
                 String value = time.substring(0, index);
                 duration += Integer.parseInt(value) * (int) indexs[i][1];
                 time = time.substring(value.length() + 1);
@@ -190,63 +226,19 @@ public class DownloadManager {
     }
 
     public void updateUI(Track track, States state, String progress, String speed) {
-        JLabel label = track.gui;
-        Graphics2D g2 = (Graphics2D) label.getGraphics();
-        g2.clearRect(0, 0, label.getWidth(), label.getHeight());
-        switch (state) {
-            case QUEUE:
-                g2.setColor(Color.lightGray.darker().darker());
-                g2.fillRect(0, 0, label.getPreferredSize().width, label.getPreferredSize().height);
-                break;
-            case EXTRACTING:
-                g2.setColor(new Color(Color.lightGray.getRed() + 10*Integer.parseInt(progress),
-                        Color.lightGray.getGreen() + 10*Integer.parseInt(progress),
-                        Color.lightGray.getBlue() + 10*Integer.parseInt(progress)));
-                g2.fillRect(0, 0, label.getPreferredSize().width, label.getPreferredSize().height);
-                break;
-            case RETRYING:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, label.getPreferredSize().width, label.getPreferredSize().height);
-                g2.setColor(new Color(0,191,255));
-                //g2.setColor(Color.red);
-                double prog = (double) Integer.parseInt(progress);
-
-                double percentage = (prog/track.ytDuration);
-                if(percentage > 1) {
-                    track.ytDuration = track.duration;
-                    percentage = 1;
-                }
-                g2.fillRect(0, label.getSize().height - 3, (int) (label.getSize().width*(prog/track.ytDuration)), 3);
-                break;
-            case EXTRACTING_DONE:
-            case DONE:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, label.getPreferredSize().width, label.getPreferredSize().height);
-                break;
-            case ERROR:
-                g2.setColor(Color.orange);
-                g2.fillRect(0, 0, label.getPreferredSize().width, label.getPreferredSize().height);
-                break;
-            case DOWNLOADING:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, (int) (label.getPreferredSize().width * (Double.parseDouble(progress.replaceAll("[^\\d.]", "")) / 100)), label.getPreferredSize().height);
-                g2.setColor(Color.black);
-
-                g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
-                int y = 3;
-                for (String line : speed.split("\n"))
-                    g2.drawString(line, 3, y += g2.getFontMetrics().getHeight());
-                break;
-        }
-
-        g2.dispose();
+        GraphicLabel label = track.gui;
+        label.speed = speed;
+        label.progress = progress;
+        label.state = state;
         label.repaint();
         label.revalidate();
     }
 
     int retry = 0;
+
     public void downloadTrack(String name, String artist, String url) {
-        if(url.equals("next_track")) {
+        if (url.equals("next_track")) {
+            updateUI(currentTrack, States.ERROR, "", "");
             nextTrack();
         } else {
             try {
@@ -254,7 +246,7 @@ public class DownloadManager {
                 executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
 
             } catch (Exception e) {
-                if(retry++ <= 3)
+                if (retry++ <= 3)
                     downloadTrack(name, artist, url);
                 else
                     nextTrack();
@@ -317,10 +309,10 @@ public class DownloadManager {
                         if (line.substring(11, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("100")) {
                             updateUI(currentTrack, States.DONE, "", "");
                         } else if (!line.substring(12, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("")) {
-                            if(!line.contains("Unknown speed")) {
-                                String speed = line.substring(32, 44).replace("", "");
-//                                if (speed.charAt(speed.length()) == ' ')
-//                                    speed = speed.substring(0, speed.length() - 1);
+                            if (!line.contains("Unknown speed")) {
+                                String speed = line.substring(32, 45).replace("", "");
+                                if (speed.charAt(speed.length() - 1) != 's')
+                                    speed = speed.substring(0, speed.length() - 1);
                                 int cut = 1;
                                 int kb = 0;
                                 if (speed.contains("K"))
@@ -335,16 +327,16 @@ public class DownloadManager {
                             }
                         }
                     }
-                    if(line.startsWith("size=")) {
-                        String time = line.substring(21, 29).replace(":","");
+                    if (line.startsWith("size=")) {
+                        String time = line.substring(21, 29).replace(":", "");
 
                         int h = Integer.parseInt(time.substring(0, 2));
-                        int m = Integer.parseInt(time.substring(2,4));
-                        int s = Integer.parseInt(time.substring(4,6));
-                        s += m*60 + h*60*60;
+                        int m = Integer.parseInt(time.substring(2, 4));
+                        int s = Integer.parseInt(time.substring(4, 6));
+                        s += m * 60 + h * 60 * 60;
                         updateUI(currentTrack, States.RETRYING, s + "", "");
                     }
-                    if(line.startsWith("video:")) {
+                    if (line.startsWith("video:")) {
                         updateUI(currentTrack, States.DONE, "", "");
                     }
 

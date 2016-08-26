@@ -107,7 +107,8 @@ public class Grid extends JPanel {
         for (Track track : tracklist) {
             JPanel row = new JPanel(new BorderLayout());
 
-            JLabel check = new JLabel(" ");
+            GraphicLabel check = new GraphicLabel(track);
+            check.setBorder(BorderFactory.createLineBorder(Color.gray));
             prefDim.height += 4;
             check.setPreferredSize(prefDim);
             track.gui = check;

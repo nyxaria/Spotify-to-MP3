@@ -69,10 +69,15 @@ public class Main {
         try {
 
             prefix = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getAbsolutePath();
-            destDirectory = prefix.substring(0, prefix.lastIndexOf('/')) + "/stuff";
-            File f = new File(destDirectory);
-            f.mkdirs();
-            f.deleteOnExit();
+            if(prefix.endsWith(".jar")) {
+                destDirectory = prefix.substring(0, prefix.lastIndexOf('/')) + "/stuff";
+                File f = new File(destDirectory);
+                f.mkdirs();
+                f.deleteOnExit();
+            } else {
+                destDirectory = prefix;
+                settingUp = false;
+            }
             System.out.println(prefix);
 
         } catch (Exception e) {
@@ -102,6 +107,8 @@ public class Main {
                         os="mac";
                     } //add linux.
 
+                    if(!finalPrefix.endsWith(".jar"))
+                        return;
                     jar = new java.util.jar.JarFile(finalPrefix);
 
                     java.util.Enumeration enums = jar.entries();
@@ -155,6 +162,7 @@ public class Main {
                 settingUp = false;
                 if(loadingWrap != null)
                     loadingWrap.setVisible(false);
+
             }
         }).start();
 
@@ -172,6 +180,7 @@ public class Main {
         formPane = new JPanel(new BorderLayout());
         JTextField idField = new JTextField("", 12);
         JButton loginButton = new JButton("Login");
+        loginButton.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
 
         Action action = new AbstractAction() {
             @Override
@@ -208,7 +217,6 @@ public class Main {
                     JPanel divider = new JPanel(new BorderLayout());
                     JLabel loadingText = new JLabel(" Setting up... ");
                     loadingText.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 13));
-
 
                     loadingWrap = new JPanel(new BorderLayout());
                     loadingWrap.add(BorderLayout.CENTER, loadingText);
@@ -279,7 +287,12 @@ public class Main {
 
                             while(scroll[0] == null) {}
                             pane.add(BorderLayout.CENTER, scroll[0]);
-                            DownloadManager downloader = new DownloadManager(toDownload.toArray(new Playlist[toDownload.size()]));
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    DownloadManager downloader = new DownloadManager(toDownload.toArray(new Playlist[toDownload.size()]));
+                                }
+                            }).start();
 
 //                        grid = new Grid(playlists.toArray(new Playlist[playlists.size()]));
 //                        JPanel wrapp = new JPanel(new GridLayout());
