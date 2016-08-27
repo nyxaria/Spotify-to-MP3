@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="se.michaelthelin.spotify:spotify-web-api-java:1.5.0" level="project" />
     <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.9.2" level="project" />
+    <orderEntry type="library" name="mp3spi1.9.5" level="project" />
+    <orderEntry type="library" name="com.googlecode.soundlibs:mp3spi:1.9.5.4" level="project" />
   </component>
 </module>

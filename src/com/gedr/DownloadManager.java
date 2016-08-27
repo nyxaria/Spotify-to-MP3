@@ -1,15 +1,20 @@
 package com.gedr;
 
+import javazoom.spi.mpeg.sampled.file.MpegAudioFileReader;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONTokener;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.io.*;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -22,7 +27,7 @@ public class DownloadManager {
     }
 
     Playlist[] playlists;
-    File output;
+    static File output;
 
     int playlistIndex = 0;
     int trackIndex = 0;
@@ -30,7 +35,7 @@ public class DownloadManager {
     Playlist currentPlaylist;
     Track currentTrack;
 
-    File temp;
+    static File temp;
 
     public DownloadManager(Playlist[] playlists) {
         this.playlists = playlists;
@@ -40,45 +45,21 @@ public class DownloadManager {
 
     public void startDownload() {
         chooseOutput();
-        if (output != null)
+        if(output != null)
             nextPlaylist();
         else
             finish();
     }
 
+
     public void chooseOutput() {
 
-        if (System.getProperty("os.name").contains("Windows")) {
-            JFileChooser fileChooser;
-            int returnValue;
-            do {
-                fileChooser = new JFileChooser();
-                fileChooser.setBounds((int) (Main.screen.getWidth() * .2), (int) (Main.screen.getHeight() * .2), (int) (Main.screen.getWidth() * .6), (int) (Main.screen.getHeight() * .6));
-                returnValue = fileChooser.showOpenDialog(null);
-            } while (returnValue != JFileChooser.APPROVE_OPTION);
-            output = fileChooser.getSelectedFile();
-        } else {//unix
-            System.setProperty("apple.awt.fileDialogForDirectories", "true");
-            FileDialog fd = new FileDialog(Main.frame);
-            fd.setBounds((int) (Main.screen.getWidth() * .2), (int) (Main.screen.getHeight() * .2), (int) (Main.screen.getWidth() * .6), (int) (Main.screen.getHeight() * .6));
-            fd.setBounds(Main.frame.getBounds());
-            fd.setVisible(true);
-            if (fd.getFile() != null) {
-                output = new File(fd.getDirectory() + "/" + fd.getFile());
-                System.setProperty("apple.awt.fileDialogForDirectories", "false");
-            }
-        }
 
-        if (output != null) {
-            temp = new File(output.getAbsolutePath() + "/_temp");
-            temp.mkdirs();
-            temp.deleteOnExit();
-        }
         //}
     }
 
     public void nextPlaylist() {
-        if (playlistIndex < playlists.length) {
+        if(playlistIndex < playlists.length) {
             currentPlaylist = playlists[playlistIndex++];
             trackIndex = 0;
             File f = new File(output.getAbsolutePath() + "/" + currentPlaylist.name);
@@ -89,17 +70,33 @@ public class DownloadManager {
         }
     }
 
+    int retrys = -1;
+
+    private void retryDownload() {
+        System.out.println("Retrying download...");
+        if(retrys < 2)
+            trackIndex--;
+        else
+            retrys = -1;
+        nextTrack();
+        retrys++;
+    }
+
     public void nextTrack() {
-        if (trackIndex < currentPlaylist.tracks.length) {
+        //if(trackIndex > 7 && playlistIndex != 0)
+            //Main.scrollDown();
+        if(trackIndex < currentPlaylist.tracks.length) {
             attempt = 1;
             retry = 0;
             currentTrack = currentPlaylist.tracks[trackIndex++];
             String artist = "";
-            for (String s : currentTrack.artists) {
+            for(String s : currentTrack.artists) {
                 artist += s + ", ";
             }
             artist = artist.substring(0, artist.length() - 2);
-            downloadTrack(currentTrack.name, artist, findYoutubeUri(currentTrack, 2));
+            retrying = false;
+
+            downloadTrack(currentTrack.name, artist, findYoutubeUri(currentTrack, 1));
         } else {
             nextPlaylist();
         }
@@ -109,33 +106,45 @@ public class DownloadManager {
 
     public String findYoutubeUri(Track track, int i) {
         String url = "";
-        if (track.id.equals("next_track")) {
+        if(track.id.equals("next_track")) {
             return "next_track";
         }
-        if (!track.id.equals("")) {
+        if(!track.id.equals("")) {
             return "https://www.youtube.com/watch?v=" + track.id;
         }
-        switch (i) {
-            case 1:
-                String keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official";
+        String keyword = null;
+        switch(i) {
+            case -1:
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
                 keyword = keyword.replace(" ", "+");
+
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 String quality = "videoDefinition=high&";
+                //String duration = "";
+                url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                break;
+            case 1:
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
+                keyword = keyword.replace(" ", "+");
+
+                duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
+                quality = "videoDefinition=high&";
                 //String duration = "";
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official";
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 //String duration = "";
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
-                keyword = track.name + " " + track.artists[0] + (track.explicit ? " explicit" : "") + " lyrics";
+                keyword = track.name + " " + track.artists[0] + " lyrics";
                 keyword = keyword.replace(" ", "+");
+                duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
-                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 4:
                 keyword = track.name + " " + track.artists[0];
@@ -144,7 +153,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 5:
-                if (track.artists.length > 1)
+                if(track.artists.length > 1)
                     keyword = track.name + " " + track.artists[1];
                 else
                     keyword = track.name + " " + track.artists[0];
@@ -154,59 +163,89 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 6:
-                track.id = "next_track";
-                return "next_track";
+                //track.id = "next_track";
+                return findYoutubeUri(currentTrack, -1);
+
         }
         //videoDuration=short/medium
+
         Document doc = null;
 
         try {
             doc = Jsoup.connect(url).ignoreContentType(true).timeout(6 * 1000).get();
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
         JSONObject ob = ((JSONObject) new JSONTokener(doc.text()).nextValue());
 
         JSONArray array = ob.getJSONArray("items");
 
-
-        if (array.isEmpty()) {
+        if(array.isEmpty()) {
             System.out.println("attempt " + (attempt) + " at getting URL...");
-            findYoutubeUri(track, ++attempt);
-            if(track.id.equals("next_track"))
+            if(i != -1) {
+                return findYoutubeUri(track, ++attempt);
+            } else {
+                track.id = "next_track";
                 return "next_track";
-        } else {
-            System.out.println("URL obtained!");
+            }
         }
         try {
             track.id = array.getJSONObject(0).getJSONObject("id").getString("videoId");
-        } catch (Exception e) {
-            findYoutubeUri(track, ++attempt);
-            if(track.id.equals("next_track"))
+        } catch(Exception e) {
+            if(i != -1) {
+                return findYoutubeUri(track, ++attempt);
+            } else {
+                track.id = "next_track";
                 return "next_track";
+            }
         }
 
-        if (new Random().nextInt(100000) == 1) {
+        if(new Random().nextInt(100000) == 1) {
             //track.id = "dQw4w9WgXcQ";
         }
 
-        if (track.ytDuration == 0) {
+        if(track.ytDuration == 0) {
             url = "https://www.googleapis.com/youtube/v3/videos?id=" + track.id + "&part=contentDetails&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
-            doc = null;
 
             try {
                 doc = Jsoup.connect(url).ignoreContentType(true).timeout(4 * 1000).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
                 array = ((JSONObject) new JSONTokener(doc.text()).nextValue()).getJSONArray("items");
                 track.ytDuration = getDuration(array.getJSONObject(0).getJSONObject("contentDetails").getString("duration"));
-            } catch (Exception e) {
+            } catch(Exception e) {
+                e.printStackTrace();
+                return "https://www.youtube.com/watch?v=" + track.id;
+            }
+
+            url = "https://www.googleapis.com/youtube/v3/videos?id=" + track.id + "&part=snippet&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+
+            try {
+                doc = Jsoup.connect(url).ignoreContentType(true).timeout(4 * 1000).get();
+                array = ((JSONObject) new JSONTokener(doc.text()).nextValue()).getJSONArray("items");
+                track.title = array.getJSONObject(0).getJSONObject("snippet").getString("title");
+            } catch(Exception e) {
+                e.printStackTrace();
                 return "https://www.youtube.com/watch?v=" + track.id;
             }
         }
+        boolean positive = false;
+        for(String query : track.name.replace("[", " ").replace("]", " ").replace("$", "s").split(" ")) {
+            if(track.title.replace("$", "s").toLowerCase().contains(query.toLowerCase())) {
+                positive = true;
+            }
+        }
+        if(!positive) {
+            if(i == -1) {
+                System.out.println("URL not found for \"" + track.name + "\" { youtube_title=\"" + track.title + "\", keyword=\"" + keyword + " }");
+                return "next_track";
+            }
+            track.id = "";
+            track.ytDuration = 0;
+            track.title = "";
+            System.out.println("Retrying to find URL...");
+            return findYoutubeUri(track, -1);
+        }
+        System.out.println("URL found for \"" + track.name + "\" { duration=" + track.ytDuration + "s, youtube_title=\"" + track.title + "\", keyword=\"" + keyword + "\", id=\"" + track.id + "\" }");
+
         return "https://www.youtube.com/watch?v=" + track.id;
     }
 
@@ -214,9 +253,9 @@ public class DownloadManager {
         time = time.substring(2);
         int duration = 0;
         Object[][] indexs = new Object[][]{{"H", 3600}, {"M", 60}, {"S", 1}};
-        for (int i = 0; i < indexs.length; i++) {
+        for(int i = 0; i < indexs.length; i++) {
             int index = time.indexOf((String) indexs[i][0]);
-            if (index != -1) {
+            if(index != -1) {
                 String value = time.substring(0, index);
                 duration += Integer.parseInt(value) * (int) indexs[i][1];
                 time = time.substring(value.length() + 1);
@@ -236,17 +275,37 @@ public class DownloadManager {
 
     int retry = 0;
 
+    boolean retrying = false;
+
     public void downloadTrack(String name, String artist, String url) {
-        if (url.equals("next_track")) {
+        if(url.endsWith("next_track")) {
             updateUI(currentTrack, States.ERROR, "", "");
             nextTrack();
         } else {
             try {
-                executeCommand(new String[]{Main.youtube_dl, "--audio-quality", "0", "-o", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", url});
-                executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
 
-            } catch (Exception e) {
-                if (retry++ <= 3)
+                boolean complete = false;
+                File file = new File(output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3");
+                if(file.exists()) {
+                    AudioFileFormat baseFileFormat = new MpegAudioFileReader().getAudioFileFormat(file);
+                    Map properties = baseFileFormat.properties();
+                    Long duration = (Long) properties.get("duration") / 1000000;
+                    if(duration > currentTrack.ytDuration - 10) {
+                        complete = true;
+                        updateUI(currentTrack, States.DONE, "", "");
+                    }
+                }
+                if(!complete) {
+                    executeCommand(new String[]{Main.youtube_dl, "--audio-quality", "0", "-o", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", url});
+                    if(retrying)
+                        retryDownload();
+                    else
+                        executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
+                }
+            } catch(Exception e) {
+
+                e.printStackTrace();
+                if(retry++ <= 3)
                     downloadTrack(name, artist, url);
                 else
                     nextTrack();
@@ -256,10 +315,11 @@ public class DownloadManager {
         }
     }
 
+
     private String executeCommand(String[] commands) {
 
         StringBuffer output = new StringBuffer();
-        for (String command : commands) {
+        for(String command : commands) {
             System.out.print(command + " ");
         }
         System.out.println();
@@ -274,7 +334,7 @@ public class DownloadManager {
             p.waitFor();
 
 
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
             return "error";
         }
@@ -300,24 +360,28 @@ public class DownloadManager {
                 BufferedReader br = new BufferedReader(isr);
                 String line = null;
 
-                while ((line = br.readLine()) != null) {
+                while((line = br.readLine()) != null) {
                     System.out.println(line);
-                    if (line.contains("Downloading webpage") || line.contains("Downloading video info webpage") || line.contains("Extracting video information") || line.contains("Downloading MPD manifest")) {
+                    if(line.contains("Downloading webpage") || line.contains("Downloading video info webpage") || line.contains("Extracting video information") || line.contains("Downloading MPD manifest")) {
                         updateUI(currentTrack, States.EXTRACTING, level++ + "", "");
                     }
-                    if (line.contains("[download]")) {
-                        if (line.substring(11, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("100")) {
-                            updateUI(currentTrack, States.DONE, "", "");
-                        } else if (!line.substring(12, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("")) {
-                            if (!line.contains("Unknown speed")) {
-                                String speed = line.substring(32, 45).replace("", "");
-                                if (speed.charAt(speed.length() - 1) != 's')
+                    if(line.contains("[download]")) {
+                        if(line.substring(11, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("100")) {
+                            updateUI(currentTrack, States.DOWNLOADING, "100", "");
+                        } else if(!line.substring(12, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("")) {
+                            if(!line.contains("Unknown speed")) {
+                                String speed = line.substring(31, 45).replace("", "");
+                                while((speed.charAt(0) + "").replaceAll("[^\\d.]", "").equals("")) {
+                                    speed = speed.substring(1, speed.length());
+                                }
+                                if(speed.charAt(speed.length() - 1) != 's')
                                     speed = speed.substring(0, speed.length() - 1);
-                                int cut = 1;
+
+                                int cut = 0;
                                 int kb = 0;
-                                if (speed.contains("K"))
+                                if(speed.contains("K"))
                                     kb = 1;
-                                if (!speed.replaceAll("[^\\d.]", "").equals(""))
+                                if(!speed.replaceAll("[^\\d.]", "").equals(""))
                                     speed = speed.substring(cut, speed.indexOf(".") + 3 - kb) + "\n" + speed.substring(speed.indexOf(".") + 3, speed.length());
                                 updateUI(currentTrack, States.DOWNLOADING, line.substring(12, 17).replace(" ", ""), speed);
 
@@ -327,7 +391,7 @@ public class DownloadManager {
                             }
                         }
                     }
-                    if (line.startsWith("size=")) {
+                    if(line.startsWith("size=")) {
                         String time = line.substring(21, 29).replace(":", "");
 
                         int h = Integer.parseInt(time.substring(0, 2));
@@ -336,18 +400,24 @@ public class DownloadManager {
                         s += m * 60 + h * 60 * 60;
                         updateUI(currentTrack, States.RETRYING, s + "", "");
                     }
-                    if (line.startsWith("video:")) {
+                    if(line.startsWith("video:")) {
                         updateUI(currentTrack, States.DONE, "", "");
                     }
 
+                    if(line.startsWith("ERROR: ")) {
+                        retrying = true;
+                        updateUI(currentTrack, States.ERROR, "", "");
+                        stop();
+                    }
 
                 }
-            } catch (IOException e) {
+            } catch(IOException e) {
                 e.printStackTrace();
             }
 
         }
     }
+
 
     public void finish() {
         deleteDirectory(temp);
@@ -355,14 +425,14 @@ public class DownloadManager {
     }
 
     public static boolean deleteDirectory(File directory) {
-        if (directory == null) {
+        if(directory == null) {
             return false;
         }
-        if (directory.exists()) {
+        if(directory.exists()) {
             File[] files = directory.listFiles();
-            if (null != files) {
-                for (File file : files)
-                    if (file.isDirectory())
+            if(null != files) {
+                for(File file : files)
+                    if(file.isDirectory())
                         deleteDirectory(file);
                     else
                         file.delete();

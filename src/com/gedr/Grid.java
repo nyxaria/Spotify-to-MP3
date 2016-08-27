@@ -9,104 +9,140 @@ public class Grid extends JPanel {
 
     public ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
 
+    //Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 11);
     public Grid(Playlist[] playlists) {
         setPreferredSize(new Dimension((int) (Main.screen.width * .6) - 24, (playlists.length) * 29));
-        setLayout(new GridLayout(0, 1));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setOpaque(true);
+        setBackground(new Color(28, 28, 28));
         JPanel title = new JPanel(new BorderLayout());
-        JLabel downloadLabel = new JLabel("⇩");
+        title.setOpaque(false);
+        JLabel downloadLabel = new JLabel(" ");
+        title.setOpaque(false);
         downloadLabel.setHorizontalAlignment(JLabel.CENTER);
         JCheckBox test = new JCheckBox();
-        downloadLabel.setPreferredSize(test.getPreferredSize());
+        Dimension prefDim = test.getPreferredSize();
+        prefDim.width += 28;
+        prefDim.height += 30;
+        downloadLabel.setPreferredSize(prefDim);
         title.add(downloadLabel, BorderLayout.WEST);
         JPanel wrap = new JPanel(new BorderLayout());
+        wrap.setOpaque(false);
         wrap.add(new JLabel(" "), BorderLayout.WEST);
-        wrap.add(new JLabel("Playlist"), BorderLayout.CENTER);
+        JLabel playlistLabel = new JLabel("PLAYLIST");
+        playlistLabel.setFont(Main.fontNormal.deriveFont(13f));
+        playlistLabel.setForeground(Color.gray);
+        wrap.add(playlistLabel, BorderLayout.CENTER);
         JPanel flowWrap = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .5), 30));
+        flowWrap.setOpaque(false);
+        title.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
 
-        flowWrap.add(new JLabel("Author"));
-        wrap.add(flowWrap, BorderLayout.EAST);
         title.add(wrap, BorderLayout.CENTER);
-        title.setBorder(BorderFactory.createLineBorder(Color.lightGray));
-        add(title, "wrap");
-
+        add(title);
+        add(new Seperator());
+        int i = 1;
         for (Playlist playlist : playlists) {
             JPanel row = new JPanel(new BorderLayout());
+            row.setBorder(BorderFactory.createEmptyBorder(4,0,4,0));
 
-
+            row.setOpaque(false);
 //            JPanel previewImages = new JPanel(new GridLayout(2, 2));
 //            for (Image image : playlist.images) {
 //                previewImages.add(new JLabel(new ImageIcon(image)));
 //            }
 //            row.add(previewImages, "shrink");
             JCheckBox check = new JCheckBox();
+            check.setPreferredSize(prefDim);
             check.setName(playlist.name);
             checkBoxes.add(check);
-            row.add(check, BorderLayout.WEST);
+            JPanel gridbagWrap = new JPanel(new GridBagLayout());
+            gridbagWrap.add(check);
+            gridbagWrap.setOpaque(false);
+            row.add(gridbagWrap, BorderLayout.WEST);
             wrap = new JPanel(new BorderLayout());
+            wrap.setOpaque(false);
             wrap.add(new JLabel(" "), BorderLayout.WEST);
-            wrap.add(new JLabel(playlist.name), BorderLayout.CENTER);
+            playlistLabel = new JLabel(playlist.name);
+            playlistLabel.setFont(Main.fontNormal.deriveFont(13f));
+            playlistLabel.setForeground(Color.white);
+            wrap.add(playlistLabel, BorderLayout.CENTER);
             flowWrap = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .5), 30));
-            flowWrap.add(new JLabel(playlist.owner));
+            flowWrap.setOpaque(false);
             wrap.add(flowWrap, BorderLayout.EAST);
             row.add(wrap, BorderLayout.CENTER);
-            add(row, "wrap");
+            add(row);
+            if(i != playlists.length)
+                add(new Seperator());
+            i++;
         }
     }
 
     public Grid(Track[] tracklist) {
-        setPreferredSize(new Dimension((int) (Main.screen.width * .6) - 24, (tracklist.length+1) * 29));
-        setLayout(new GridLayout(0, 1));
+        setPreferredSize(new Dimension((int) (Main.screen.width * .6) - 24, (tracklist.length+1) * (29+8)));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setOpaque(true);
+        setBackground(new Color(28, 28, 28));
         JCheckBox test = new JCheckBox();
         Dimension prefDim = test.getPreferredSize();
-        prefDim.width += 4;
+        prefDim.width += 28;
+        prefDim.height +=20;
         JPanel title = new JPanel(new BorderLayout());
-        JLabel downloadLabel = new JLabel("⇩");
+        title.setOpaque(false);
+        JLabel downloadLabel = new JLabel(" ");
         downloadLabel.setHorizontalAlignment(JLabel.CENTER);
         downloadLabel.setPreferredSize(prefDim);
         title.add(downloadLabel, BorderLayout.WEST);
         JPanel wrap = new JPanel(new BorderLayout());
         wrap.add(new JLabel(" "), BorderLayout.WEST);
-        wrap.add(new JLabel("Song"), BorderLayout.CENTER);
+        JLabel songLabel = new JLabel("SONG");
+        songLabel.setFont(Main.fontNormal.deriveFont(12f));
+        downloadLabel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
+        songLabel.setForeground(Color.gray);
+        wrap.add(songLabel, BorderLayout.CENTER);
+        wrap.setOpaque(false);
         JPanel grid = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        grid.setOpaque(false);
         JPanel flowWrap = new JPanel(new GridLayout());
-        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6) -40, 30));
-        JLabel art = new JLabel("Artist");
-        grid.setPreferredSize(new Dimension(100, 30));
+        flowWrap.setOpaque(false);
+        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6*.6)-6, 40));
+        JLabel art = new JLabel("ARTIST");
+        art.setFont(Main.fontNormal.deriveFont(12f));
+        art.setForeground(Color.gray);
+
+        //grid.setPreferredSize(new Dimension(100, 40));
 
         ImageIcon img = new ImageIcon(getClass().getResource("/downloading3.gif"));
 
-        JLabel loadingImg = new JLabel("    ", img, JLabel.CENTER);
+        JLabel loadingImg = new JLabel("", img, JLabel.CENTER);
 
-        loadingImg.setVisible(false); /***/
+        //loadingImg.setVisible(false); /***/
 
         loadingImg.setVerticalTextPosition(JLabel.CENTER);
         loadingImg.setHorizontalTextPosition(JLabel.RIGHT);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                img.setImageObserver(loadingImg);
-            }
-        }).start();
+        img.setImageObserver(loadingImg);
         JPanel Flow = new JPanel(new GridBagLayout());
-        Flow.setPreferredSize(new Dimension(33, 30));
-        Flow.add(loadingImg);
+        //Flow.setPreferredSize(new Dimension(70, 40));
+        //Flow.add(loadingImg);
+        Flow.setOpaque(false);
 
         grid.add(art);
         flowWrap.add(art);
         flowWrap.setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
         JPanel border = new JPanel(new BorderLayout());
         border.add(flowWrap, BorderLayout.CENTER);
-        border.add(Flow, BorderLayout.EAST);
+        //border.add(Flow, BorderLayout.EAST);
+        border.setOpaque(false);
         wrap.add(border, BorderLayout.EAST);
         title.add(wrap, BorderLayout.CENTER);
-        title.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+        title.setPreferredSize(new Dimension(title.getWidth(), 40));
         add(title, "wrap");
-
+        add(new Seperator());
+        int i = 1;
         for (Track track : tracklist) {
             JPanel row = new JPanel(new BorderLayout());
+            row.setBorder(BorderFactory.createEmptyBorder(4,0,4,0));
 
+            row.setOpaque(false);
             GraphicLabel check = new GraphicLabel(track);
             check.setBorder(BorderFactory.createLineBorder(Color.gray));
             prefDim.height += 4;
@@ -114,24 +150,57 @@ public class Grid extends JPanel {
             track.gui = check;
             row.add(check, BorderLayout.WEST);
             wrap = new JPanel(new BorderLayout());
+            wrap.setOpaque(false);
             wrap.add(new JLabel(" "), BorderLayout.WEST);
-            wrap.add(new JLabel(track.name), BorderLayout.CENTER);
+            songLabel = new JLabel(track.name);
+            songLabel.setFont(Main.fontNormal.deriveFont(13f));
+            songLabel.setForeground(new Color(240,240,240));
+            wrap.add(songLabel, BorderLayout.CENTER);
             flowWrap = new JPanel(new FlowLayout(FlowLayout.LEFT));
+            flowWrap.setOpaque(false);
             flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6), 30));
             String artist = "";
             for (String s : track.artists) {
                 artist += s + ", ";
             }
             artist = artist.substring(0, artist.length() - 2);
+            art = new JLabel(artist);
+            art.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6),(int) art.getPreferredSize().getHeight()));
 
-            flowWrap.add(new JLabel(artist));
+            art.setForeground(new Color(240,240,240));
+            art.setFont(Main.fontNormal.deriveFont(13f));
+            flowWrap.add(art);
             wrap.add(flowWrap, BorderLayout.EAST);
             row.add(wrap, BorderLayout.CENTER);
+            row.setPreferredSize(new Dimension(title.getWidth(), 40));
+
             add(row, "wrap");
+            if(i != tracklist.length)
+                add(new Seperator());
+            i++;
+
         }
     }
 }
 
+class Seperator extends JComponent {
+    public static final Color seperatorColor = new Color(48,48,48);
+
+    public Seperator() {
+        setOpaque(true);
+    }
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(getWidth(), 2);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(seperatorColor);
+        g.fillRect(8,0,getWidth()-8,2);
+    }
+}
 
 
 

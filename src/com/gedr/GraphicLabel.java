@@ -1,8 +1,12 @@
 package com.gedr;
 
 
+import javafx.scene.shape.Ellipse;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 
 public class GraphicLabel extends JLabel {
     DownloadManager.States state = DownloadManager.States.QUEUE;
@@ -17,20 +21,34 @@ public class GraphicLabel extends JLabel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        Color green = new Color(9,166,73);
+        Color background = new Color(38,38,38);
+
+//        BufferedImage mask = new BufferedImage(getHeight(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+//        Graphics2D g2b = mask.createGraphics();
+//        g2b.setColor(background);
+//        g2b.fillRect(0,0,mask.getWidth(),mask.getHeight());
+
+        int xOff = getWidth()/2 - getHeight()/2;
+        Ellipse2D clipArea = new Ellipse2D.Float(xOff,0,getHeight(),getHeight());
+
+        g2.setClip(clipArea);
 
         switch (state) {
             case QUEUE:
                 break;
             case EXTRACTING:
-                g2.setColor(new Color(Color.lightGray.getRed() + 10*Integer.parseInt(progress),
-                        Color.lightGray.getGreen() + 10*Integer.parseInt(progress),
-                        Color.lightGray.getBlue() + 10*Integer.parseInt(progress)));
-                g2.fillRect(0, 0, getPreferredSize().width, getPreferredSize().height);
+                g2.setColor(new Color(background.getRed() + 40 - 10*Integer.parseInt(progress),
+                        background.getGreen() + 40 - 10*Integer.parseInt(progress),
+                        background.getBlue() + 40 - 10*Integer.parseInt(progress)));
+                g2.fillRect(xOff, 0, getHeight(), getPreferredSize().height);
                 break;
             case RETRYING:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, getPreferredSize().width, getPreferredSize().height);
-                g2.setColor(new Color(0,191,255));
+                g2.setColor(Color.gray);
+                g2.fillRect(xOff, 0, getHeight(), getHeight());
+                g2.setColor(green);
                 //g2.setColor(Color.red);
                 double prog = (double) Integer.parseInt(progress);
 
@@ -43,28 +61,32 @@ public class GraphicLabel extends JLabel {
                     track.ytDuration = track.duration;
                     percentage = 1;
                 }
-                g2.fillRect(0, getSize().height - 3, (int) (getSize().width*(prog/track.ytDuration)), 3);
+                g2.fillRect(xOff, getSize().height - (int) (getHeight()*(prog/track.ytDuration)), getHeight(), (int) (getHeight()*(prog/track.ytDuration)));
                 break;
             case EXTRACTING_DONE:
             case DONE:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, getPreferredSize().width, getPreferredSize().height);
+                g2.setColor(green);
+                g2.fillRect(xOff, 0, getHeight(), getHeight());
                 break;
             case ERROR:
                 g2.setColor(Color.orange);
-                g2.fillRect(0, 0, getPreferredSize().width, getPreferredSize().height);
+                g2.fillRect(xOff, 0, getHeight(), getHeight());
                 break;
             case DOWNLOADING:
-                g2.setColor(new Color(50, Color.green.getGreen(), 50));
-                g2.fillRect(0, 0, (int) (getPreferredSize().width * (Double.parseDouble(progress.replaceAll("[^\\d.]", "")) / 100)), getPreferredSize().height);
-                g2.setColor(Color.black);
-
-                g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
-                int y = 3;
-                for (String line : speed.split("\n"))
-                    g2.drawString(line, 3, y += g2.getFontMetrics().getHeight());
+                g2.setColor(Color.gray);
+                g2.fillRect(xOff, 0, (int) (getHeight() * (Double.parseDouble(progress.replaceAll("[^\\d.]", "")) / 100)), getHeight());
+//                g2.setColor(Color.black);
+//
+//                g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 8));
+//                int y = 3;
+//                for (String line : speed.split("\n"))
+//                    g2.drawString(line, 3, y += g2.getFontMetrics().getHeight());
                 break;
         }
+        //g2.drawImage(mask, xOff, 0, null);
+        g2.setStroke(new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        g2.setColor(Color.darkGray);
+        g2.draw(clipArea);
 
         g2.dispose();
 
