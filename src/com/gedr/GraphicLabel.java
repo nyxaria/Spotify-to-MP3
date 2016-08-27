@@ -46,7 +46,7 @@ public class GraphicLabel extends JLabel {
                 g2.fillRect(xOff, 0, getHeight(), getPreferredSize().height);
                 break;
             case RETRYING:
-                g2.setColor(Color.gray);
+                g2.setColor(background);
                 g2.fillRect(xOff, 0, getHeight(), getHeight());
                 g2.setColor(green);
                 //g2.setColor(Color.red);
@@ -73,7 +73,7 @@ public class GraphicLabel extends JLabel {
                 g2.fillRect(xOff, 0, getHeight(), getHeight());
                 break;
             case DOWNLOADING:
-                g2.setColor(Color.gray);
+                g2.setColor(background);
                 g2.fillRect(xOff, 0, (int) (getHeight() * (Double.parseDouble(progress.replaceAll("[^\\d.]", "")) / 100)), getHeight());
 //                g2.setColor(Color.black);
 //

@@ -4,6 +4,8 @@ package com.gedr;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.ScrollBarUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.text.JTextComponent;
@@ -215,7 +217,7 @@ public class Main {
         frame.setResizable(false);
         pane = (JPanel) frame.getContentPane();
         pane.setOpaque(true);
-        pane.setBackground(new Color(38, 38, 38));
+        pane.setBackground(new Color(28, 28, 28));
         pane.setLayout(new BorderLayout());
 
         JPanel center = new JPanel(new GridBagLayout());
@@ -330,9 +332,9 @@ public class Main {
 
         pane.add(BorderLayout.CENTER, center);
 
-        frame.setVisible(true);
         //formPane.setPreferredSize(new Dimension(formPane.getPreferredSize().width, idField.getHeight()));
 
+        frame.setVisible(true);
         idField.transferFocus();
 
     }
@@ -488,25 +490,36 @@ public class Main {
                     return;
                 }
 
+                int height = grid.row.getHeight(); //adjust for dividers
                 pane.removeAll();
-
                 pane.repaint();
                 pane.revalidate();
 
                 JPanel tracklistWrap = new JPanel();
                 tracklistWrap.setLayout(new BoxLayout(tracklistWrap, BoxLayout.Y_AXIS));
                 int size = 0;
+                int index = 0;
                 for(Playlist playlist : toDownload) {
                     Grid grid = new Grid(playlist.tracks);
+                    grid.setPreferredSize(new Dimension(Main.frame.getSize().width, height* (playlist.tracks.length+1)));
                     tracklistWrap.add(grid);
+                    if(index++ +1!= toDownload.size()) {
+                        Separator sep = new Separator(true);
+                        tracklistWrap.add(Box.createVerticalStrut(12));
+                        sep.setMinimumSize(new Dimension(Main.frame.getWidth()-20, 20));
+                        tracklistWrap.add(sep);
+                        tracklistWrap.add(Box.createVerticalStrut(4));
+
+                    }
                     size += playlist.tracks.length + 1;
                 }
                 trackNumber = size;
-                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8 -1) * (size)));
+                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (int) 3 + ((index-1)*18) + (height)* (size)));
+
                 tracklistWrap.setOpaque(false);
                 JPanel flow = new JPanel(new FlowLayout(FlowLayout.CENTER));
                 flow.setOpaque(false);
-                flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8-1) * (size)));
+                //flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8) * (size)));
 
                 flow.add(tracklistWrap);
                 scroll = new JScrollPane(flow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -668,7 +681,7 @@ class HintTextField extends JTextField implements FocusListener {
     private boolean showingHint;
     public Thread thread;
     public boolean running;
-    private int degree;
+    private double degree;
 
     public HintTextField(final String hint) {
         super(hint);
@@ -738,9 +751,9 @@ class HintTextField extends JTextField implements FocusListener {
                     public void run() {
                         while(loading) {
                             long now = System.currentTimeMillis();
-                            while(System.currentTimeMillis() < now + 10) {
+                            while(System.currentTimeMillis() < now + 2) {
                             }
-                            degree++;
+                            degree+=.2;
                             repaint();
                             revalidate();
                         }
@@ -753,14 +766,14 @@ class HintTextField extends JTextField implements FocusListener {
 
             g2d.setColor(green);
             int r = Math.min(getWidth(), getHeight()) - 10;
-            Arc2D arc = new Arc2D.Double(getWidth() - r - 7, 5, r, r, (degree % 360), 300, Arc2D.OPEN);
+            Arc2D arc = new Arc2D.Double(getWidth() - r - 6, 5, r, r, (degree % 360), 300, Arc2D.OPEN);
             g2d.draw(arc);
         }
 
         if(red.getAlpha() > 0) {
             g2d.setColor(red);
-            g2d.setFont(Main.fontBold.deriveFont(15f));
-            g2d.drawString("!", getWidth() - 17, 20);
+            g2d.setFont(Main.fontBold.deriveFont(16f));
+            g2d.drawString("!", getWidth() - 16, 20);
         }
 
 
@@ -834,7 +847,7 @@ class SpotifyScroll extends BasicScrollBarUI {
 
         g2d.setColor(new Color(140, 140, 140));
         g2d.translate(thumbBounds.x, thumbBounds.y);
-        g2d.fillRoundRect(4, 0, (int) thumbBounds.getWidth() - 8, (int) thumbBounds.getHeight() - 2, 10, 6);
+        g2d.fillRoundRect(4, 2, (int) thumbBounds.getWidth() - 9, (int) thumbBounds.getHeight() - 2, 10, 8);
         g2d.translate(-thumbBounds.x, -thumbBounds.y);
         g2d.dispose();
 

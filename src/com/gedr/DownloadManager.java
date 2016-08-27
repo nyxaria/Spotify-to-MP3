@@ -115,7 +115,7 @@ public class DownloadManager {
         String keyword = null;
         switch(i) {
             case -1:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ");
                 keyword = keyword.replace(" ", "+");
 
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -124,7 +124,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 1:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
 
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -133,7 +133,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + "";
+                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 //String duration = "";
@@ -149,8 +149,9 @@ public class DownloadManager {
             case 4:
                 keyword = track.name + " " + track.artists[0];
                 keyword = keyword.replace(" ", "+");
+                duration = "&sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
-                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + duration+ "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 5:
                 if(track.artists.length > 1)
@@ -228,7 +229,7 @@ public class DownloadManager {
             }
         }
         boolean positive = false;
-        for(String query : track.name.replace("[", " ").replace("]", " ").replace("$", "s").split(" ")) {
+        for(String query : track.name.replaceAll("[.*?]", "").replace("$", "s").split(" ")) {
             if(track.title.replace("$", "s").toLowerCase().contains(query.toLowerCase())) {
                 positive = true;
             }
@@ -242,7 +243,7 @@ public class DownloadManager {
             track.ytDuration = 0;
             track.title = "";
             System.out.println("Retrying to find URL...");
-            return findYoutubeUri(track, -1);
+            return findYoutubeUri(track, ++i);
         }
         System.out.println("URL found for \"" + track.name + "\" { duration=" + track.ytDuration + "s, youtube_title=\"" + track.title + "\", keyword=\"" + keyword + "\", id=\"" + track.id + "\" }");
 

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Grid extends JPanel {
 
+    public JPanel row;
     public ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
 
     //Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 11);
@@ -30,7 +31,7 @@ public class Grid extends JPanel {
         wrap.setOpaque(false);
         wrap.add(new JLabel(" "), BorderLayout.WEST);
         JLabel playlistLabel = new JLabel("PLAYLIST");
-        playlistLabel.setFont(Main.fontNormal.deriveFont(13f));
+        playlistLabel.setFont(Main.fontNormal.deriveFont(12f));
         playlistLabel.setForeground(Color.gray);
         wrap.add(playlistLabel, BorderLayout.CENTER);
         JPanel flowWrap = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -39,9 +40,10 @@ public class Grid extends JPanel {
 
         title.add(wrap, BorderLayout.CENTER);
         add(title);
-        add(new Seperator());
+        add(new Separator(false));
         int i = 1;
         for (Playlist playlist : playlists) {
+
             JPanel row = new JPanel(new BorderLayout());
             row.setBorder(BorderFactory.createEmptyBorder(4,0,4,0));
 
@@ -72,8 +74,10 @@ public class Grid extends JPanel {
             row.add(wrap, BorderLayout.CENTER);
             add(row);
             if(i != playlists.length)
-                add(new Seperator());
+                add(new Separator(false));
             i++;
+            if(i==2)
+            this.row = row;
         }
     }
 
@@ -111,15 +115,7 @@ public class Grid extends JPanel {
 
         //grid.setPreferredSize(new Dimension(100, 40));
 
-        ImageIcon img = new ImageIcon(getClass().getResource("/downloading3.gif"));
 
-        JLabel loadingImg = new JLabel("", img, JLabel.CENTER);
-
-        //loadingImg.setVisible(false); /***/
-
-        loadingImg.setVerticalTextPosition(JLabel.CENTER);
-        loadingImg.setHorizontalTextPosition(JLabel.RIGHT);
-        img.setImageObserver(loadingImg);
         JPanel Flow = new JPanel(new GridBagLayout());
         //Flow.setPreferredSize(new Dimension(70, 40));
         //Flow.add(loadingImg);
@@ -136,7 +132,7 @@ public class Grid extends JPanel {
         title.add(wrap, BorderLayout.CENTER);
         title.setPreferredSize(new Dimension(title.getWidth(), 40));
         add(title, "wrap");
-        add(new Seperator());
+        add(new Separator(false));
         int i = 1;
         for (Track track : tracklist) {
             JPanel row = new JPanel(new BorderLayout());
@@ -176,31 +172,14 @@ public class Grid extends JPanel {
 
             add(row, "wrap");
             if(i != tracklist.length)
-                add(new Seperator());
+                add(new Separator(false));
             i++;
 
         }
     }
 }
 
-class Seperator extends JComponent {
-    public static final Color seperatorColor = new Color(48,48,48);
 
-    public Seperator() {
-        setOpaque(true);
-    }
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(getWidth(), 2);
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(seperatorColor);
-        g.fillRect(8,0,getWidth()-8,2);
-    }
-}
 
 
 
