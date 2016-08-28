@@ -1,12 +1,7 @@
 package com.gedr;
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.ScrollBarUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
@@ -25,33 +20,27 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
-
-import static java.nio.file.Files.setPosixFilePermissions;
 
 public class Main {
-
 
     public static String success = "";
     public static String extractedJarPath;
     private final HintTextField idField;
-    private JPanel loadingWrap;
     private JButton downloadButton;
     private boolean settingUp = true;
     public static JScrollPane scroll;
 
     public static int trackNumber = 0;
+    private LoadingLabel loadingImg;
 
     public static void scrollDown() {
-//        JViewport view = scroll.getViewport();
-//        view.setViewPosition(new Point((int) view.getViewPosition().getX(), (int) view.getViewPosition().getY() + 30));
-//        scroll.setViewport(view);
+        //        JViewport view = scroll.getViewport();
+        //        view.setViewPosition(new Point((int) view.getViewPosition().getX(), (int) view.getViewPosition().getY() + 30));
+        //        scroll.setViewport(view);
 
         JScrollBar vscroll = scroll.getVerticalScrollBar();
 
@@ -62,19 +51,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         //javax.swing.UIManager.put("Button.background", new javax.swing.plaf.ColorUIResource(38,38,38));
         //UIManager.put(scroll, Color.RED);
 
         new Main();
 
-//        try {
-//            VGet v = new VGet(new URL("http://www.youtube.com/watch?v=1JyA1HZmjg8"), new File("/"));
-//            v.download();
-//
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        //        try {
+        //            VGet v = new VGet(new URL("http://www.youtube.com/watch?v=1JyA1HZmjg8"), new File("/"));
+        //            v.download();
+        //
+        //        } catch (Exception e) {
+        //            throw new RuntimeException(e);
+        //        }
     }
 
     public static final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -150,8 +138,10 @@ public class Main {
                         os = "mac";
                     } //add linux.
 
-                    if(!finalPrefix.endsWith(".jar"))
+                    if(!finalPrefix.endsWith(".jar")) { //for IDE development
+                        settingUp = false;
                         return;
+                    }
                     jar = new java.util.jar.JarFile(finalPrefix);
 
                     java.util.Enumeration enums = jar.entries();
@@ -199,13 +189,11 @@ public class Main {
                         }
                     }
 
-
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
                 settingUp = false;
-                if(loadingWrap != null)
-                    loadingWrap.setVisible(false);
+                if(loadingImg != null) loadingImg.setVisible(false);
 
             }
         }).start();
@@ -213,8 +201,11 @@ public class Main {
         frame = new JFrame("generic title");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //handle that later
-        frame.setBounds((int) (screen.getWidth() * .2), (int) (screen.getHeight() * .2), (int) (screen.getWidth() * .6), (int) (screen.getHeight() * .6));
+        frame.setSize(864, 540);
+        frame.setLocation((int) screen.getWidth() / 2 - 864 / 2, (int) screen.getHeight() / 2 - 540 / 2);
         frame.setResizable(false);
+
+        System.out.println(frame.getWidth() + ", " + frame.getHeight());
         pane = (JPanel) frame.getContentPane();
         pane.setOpaque(true);
         pane.setBackground(new Color(28, 28, 28));
@@ -266,10 +257,8 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 new Thread(new Runnable() {
                     public void run() {
-                        if(idField.getText().equals(""))
-                            return;
-                        if(idField.loading)
-                            return;
+                        if(idField.getText().equals("")) return;
+                        if(idField.loading) return;
                         idField.loading = true;
                         idField.repaint();
                         idField.revalidate();
@@ -339,11 +328,12 @@ public class Main {
 
     }
 
+    boolean running = true;
+
     public void setupPlaylistGrid(Playlist[] playlists) {
         pane.removeAll();
         pane.setOpaque(true);
         pane.setBackground(new Color(28, 28, 28));
-
 
         grid = new Grid(playlists);
         JPanel wrapp = new JPanel();
@@ -355,7 +345,7 @@ public class Main {
         wrapp.add(grid);
         JPanel flow = new JPanel(new FlowLayout(FlowLayout.CENTER));
         flow.setOpaque(false);
-        flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 10) * (playlists.length )));
+        flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 10) * (playlists.length)));
 
         flow.add(wrapp);
         scroll = new JScrollPane(flow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -366,28 +356,17 @@ public class Main {
         scroll.getVerticalScrollBar().setBorder(null);
         scroll.getVerticalScrollBar().setUI(new SpotifyScroll());
 
-
         pane.add(BorderLayout.CENTER, scroll);
-        LoadingLabel loadingImg = new LoadingLabel();
-        loadingImg.setPreferredSize(new Dimension(26, 26));
+        loadingImg = new LoadingLabel(4);
+        loadingImg.setPreferredSize(new Dimension(42, 42));
+        JPanel gridBag = new JPanel(new GridBagLayout());
+        gridBag.add(loadingImg);
+        gridBag.setOpaque(false);
+        gridBag.setPreferredSize(new Dimension(100, 50));
 
         JPanel divider = new JPanel(new BorderLayout());
+        divider.add(gridBag, BorderLayout.CENTER);
         divider.setOpaque(false);
-        JLabel loadingText = new JLabel(" Setting up... ");
-        loadingText.setFont(Main.fontNormal.deriveFont(13f));
-        loadingText.setForeground(Color.white);
-
-        loadingWrap = new JPanel(new BorderLayout());
-        loadingWrap.setOpaque(false);
-        loadingWrap.add(BorderLayout.CENTER, loadingText);
-        loadingWrap.add(BorderLayout.EAST, loadingImg);
-
-
-        JPanel paneel = new JPanel();
-        //paneel.setBackground(new Color(38, 38, 38));
-
-        paneel.add(loadingWrap); //lmao these names
-        paneel.setOpaque(false);
 
         downloadButton = new JButton("Download Selected");
         downloadButton.setFont(Main.fontNormal.deriveFont(14f));
@@ -416,28 +395,28 @@ public class Main {
                 downloadButton.setForeground(Color.gray);
             }
         });
-        downloadButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        downloadButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 5));
         downloadButton.setOpaque(false);
 
         JPanel flowWrap = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         flowWrap.setOpaque(false);
-        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 - paneel.getPreferredSize().getWidth()), 50));
+        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 - loadingImg.getPreferredSize().getWidth()), 50));
         JPanel gridWrap = new JPanel(new GridBagLayout());
         gridWrap.add(downloadButton);
         gridWrap.setPreferredSize(new Dimension(downloadButton.getPreferredSize().width, 50));
         gridWrap.setOpaque(false);
         flowWrap.add(gridWrap);
         //wrap.setPreferredSize(new Dimension(-1, 35));
-        divider.add(paneel, BorderLayout.WEST);
+        divider.add(gridBag, BorderLayout.WEST);
         divider.add(flowWrap, BorderLayout.EAST);
         divider.setOpaque(true);
         divider.setBackground(new Color(38, 38, 38));
         pane.add(BorderLayout.NORTH, divider);
 
         if(!settingUp) {
-            loadingWrap.setVisible(false);
+            loadingImg.setVisible(false);
         } else {
-            loadingWrap.setVisible(true);
+            loadingImg.setVisible(true);
         }
 
         downloadButton.addActionListener(new ActionListener() {
@@ -446,26 +425,27 @@ public class Main {
                 if(settingUp) {
                     return;
                 }
-                if(System.getProperty("os.name").contains("Windows")) {
-                    JFileChooser fileChooser;
-                    int returnValue;
-                    do {
-                        fileChooser = new JFileChooser();
-                        fileChooser.setBounds((int) (Main.screen.getWidth() * .2), (int) (Main.screen.getHeight() * .2), (int) (Main.screen.getWidth() * .6), (int) (Main.screen.getHeight() * .6));
-                        returnValue = fileChooser.showOpenDialog(null);
-                    } while(returnValue != JFileChooser.APPROVE_OPTION && fileChooser.getSelectedFile().isDirectory());
-                    DownloadManager.output = fileChooser.getSelectedFile();
-                } else {//unix
-                    System.setProperty("apple.awt.fileDialogForDirectories", "true");
-                    FileDialog fd = new FileDialog(Main.frame);
-                    fd.setBounds((int) (Main.screen.getWidth() * .2), (int) (Main.screen.getHeight() * .2), (int) (Main.screen.getWidth() * .6), (int) (Main.screen.getHeight() * .6));
-                    fd.setBounds(Main.frame.getBounds());
-                    fd.setVisible(true);
-                    if(fd.getFile() != null) {
-                        DownloadManager.output = new File(fd.getDirectory() + "/" + fd.getFile());
-                        System.setProperty("apple.awt.fileDialogForDirectories", "false");
-                    }
-                }
+                //                JFileChooser fileChooser = new JFileChooser();
+                //                fileChooser.setAcceptAllFileFilterUsed(false);
+                //                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                //                fileChooser.setBounds((int) (Main.screen.getWidth() * .2), (int) (Main.screen.getHeight() * .2), (int) (Main.screen.getWidth() * .6), (int) (Main.screen.getHeight() * .6));
+                //                if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                //                    System.out.println("getCurrentDirectory(): " + fileChooser.getCurrentDirectory());
+                //                    System.out.println("getSelectedFile() : " + fileChooser.getSelectedFile());
+                //                    if(fileChooser.getSelectedFile() == null)
+                //                        DownloadManager.output = fileChooser.getCurrentDirectory();
+                //                    else DownloadManager.output = fileChooser.getSelectedFile();
+                //                }
+                System.setProperty("apple.awt.fileDialogForDirectories", "true");
+                FileDialog fc = new FileDialog(frame, "Choose directory to download playlist into");
+                fc.setVisible(true);
+                String fn = fc.getFile();
+                if(fn == null) return;
+                else DownloadManager.output = new File(fc.getDirectory() + "/" + fn);
+                System.out.println("out : " + DownloadManager.output.getAbsolutePath());
+                System.setProperty("apple.awt.fileDialogForDirectories", "false");
+
+                loadingImg.setVisible(true);
 
                 if(DownloadManager.output != null) {
                     DownloadManager.temp = new File(DownloadManager.output.getAbsolutePath() + "/_temp");
@@ -480,42 +460,48 @@ public class Main {
                     if(box.checked) {
                         for(Playlist p : playlists) {
                             if(p.name.equals(box.getName())) {
-                                toDownload.add(p);
-                                currentSession.getTracks(p);
+                                if(p.total != 0) {
+                                    toDownload.add(p);
+                                    currentSession.getTracks(p);
+                                }
                             }
                         }
                     }
                 }
+
                 if(toDownload.isEmpty()) {
                     return;
                 }
 
                 int height = 39; //adjust for dividers
-                pane.removeAll();
-                pane.repaint();
-                pane.revalidate();
 
                 JPanel tracklistWrap = new JPanel();
                 tracklistWrap.setLayout(new BoxLayout(tracklistWrap, BoxLayout.Y_AXIS));
                 int size = 0;
                 int index = 0;
                 for(Playlist playlist : toDownload) {
-                    Grid grid = new Grid(playlist.tracks);
-                    System.out.println(playlist.tracks.length);
-                    grid.setPreferredSize(new Dimension(Main.frame.getSize().width, height* (playlist.tracks.length+1) + 5*playlist.tracks.length+1));
-                    tracklistWrap.add(grid);
-                    if(index++ +1!= toDownload.size()) {
-                        Separator sep = new Separator(true);
-                        tracklistWrap.add(Box.createVerticalStrut(12));
-                        sep.setMinimumSize(new Dimension(Main.frame.getWidth()-20, 20));
-                        tracklistWrap.add(sep);
-                        tracklistWrap.add(Box.createVerticalStrut(9));
+                    if(playlist.tracks.length != 0) {
+                        Grid grid = new Grid(playlist.tracks, playlist.name);
+                        System.out.println(playlist.name + " - " + playlist.tracks.length);
+                        grid.setPreferredSize(new Dimension(Main.frame.getSize().width, height * (playlist.tracks.length + 1) + 5 * playlist.tracks.length + 1));
+                        tracklistWrap.add(grid);
+                        if(index++ + 1 != toDownload.size()) {
+                            Separator sep = new Separator(true);
+                            tracklistWrap.add(Box.createVerticalStrut(12));
+                            sep.setMinimumSize(new Dimension(Main.frame.getWidth() - 20, 20));
+                            tracklistWrap.add(sep);
+                            tracklistWrap.add(Box.createVerticalStrut(9));
 
+                        }
+                        size += playlist.tracks.length + 1;
+                    } else {
+                        toDownload.remove(playlist);
+                        toDownload.trimToSize();
                     }
-                    size += playlist.tracks.length + 1;
                 }
                 trackNumber = size;
-                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (int) ((index-1)*22) + (height)* (size)));
+                //System.out.println(toDownload.size());
+                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (index) * 28 + (height) * (size) - (toDownload.size() == 1 ? 36 : 0)));
 
                 tracklistWrap.setOpaque(false);
                 JPanel flow = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -523,16 +509,22 @@ public class Main {
                 //flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8) * (size)));
 
                 flow.add(tracklistWrap);
-                scroll = new JScrollPane(flow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                scroll = new JScrollPane(flow, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                 scroll.getVerticalScrollBar().setUnitIncrement(19);
                 scroll.getViewport().setOpaque(true);
                 scroll.getViewport().setBackground(new Color(28, 28, 28));
                 scroll.setBorder(null);
                 scroll.getVerticalScrollBar().setBorder(null);
+
                 scroll.getVerticalScrollBar().setUI(new SpotifyScroll());
 
+                pane.removeAll();
+                pane.repaint();
+                pane.revalidate();
                 pane.add(BorderLayout.CENTER, scroll);
                 pane.setOpaque(false);
+                running = false;
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -540,15 +532,9 @@ public class Main {
                     }
                 }).start();
 
-//                        grid = new Grid(playlists.toArray(new Playlist[playlists.size()]));
-//                        JPanel wrapp = new JPanel(new GridLayout());
-//                        wrapp.add(grid);
-
             }
         });
-        pane.revalidate();
     }
-
 
     private String executeCommand(String command) {
 
@@ -558,8 +544,7 @@ public class Main {
         try {
             p = Runtime.getRuntime().exec(command);
             p.waitFor();
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
             String line = "";
             while((line = reader.readLine()) != null) {
@@ -574,9 +559,7 @@ public class Main {
 
     }
 
-
-    private static URI getJarURI()
-            throws URISyntaxException {
+    private static URI getJarURI() throws URISyntaxException {
         final ProtectionDomain domain;
         final CodeSource source;
         final URL url;
@@ -590,10 +573,7 @@ public class Main {
         return (uri);
     }
 
-    private static URI getFile(final URI where,
-                               final String fileName)
-            throws ZipException,
-            IOException {
+    private static URI getFile(final URI where, final String fileName) throws IOException {
         final File location;
         final URI fileURI;
 
@@ -617,9 +597,7 @@ public class Main {
         return (fileURI);
     }
 
-    private static URI extract(final ZipFile zipFile,
-                               final String fileName)
-            throws IOException {
+    private static URI extract(final ZipFile zipFile, final String fileName) throws IOException {
         final File tempFile;
         final ZipEntry entry;
         final InputStream zipStream;
@@ -665,7 +643,6 @@ public class Main {
         }
     }
 
-
     public static void failureLogin() {
         formPane.setVisible(true);
         JLabel warning = new JLabel("User ID does not exist");
@@ -674,7 +651,6 @@ public class Main {
     }
 
 }
-
 
 class HintTextField extends JTextField implements FocusListener {
 
@@ -730,8 +706,7 @@ class HintTextField extends JTextField implements FocusListener {
 
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Shape border = getBorderShape();
 
         Stroke os = g2d.getStroke();
@@ -754,7 +729,7 @@ class HintTextField extends JTextField implements FocusListener {
                             long now = System.currentTimeMillis();
                             while(System.currentTimeMillis() < now + 2) {
                             }
-                            degree+=.2;
+                            degree += .2;
                             repaint();
                             revalidate();
                         }
@@ -777,23 +752,17 @@ class HintTextField extends JTextField implements FocusListener {
             g2d.drawString("!", getWidth() - 17, 20);
         }
 
-
         super.paintComponent(g);
     }
 
     private Shape getBorderShape() {
         JTextComponent component = this;
         if(round > 0) {
-            return new RoundRectangle2D.Double(shadeWidth, shadeWidth,
-                    component.getWidth() - shadeWidth * 2 - 1,
-                    component.getHeight() - shadeWidth * 2 - 1, round * 2, round * 2);
+            return new RoundRectangle2D.Double(shadeWidth, shadeWidth, component.getWidth() - shadeWidth * 2 - 1, component.getHeight() - shadeWidth * 2 - 1, round * 2, round * 2);
         } else {
-            return new Rectangle2D.Double(shadeWidth, shadeWidth,
-                    component.getWidth() - shadeWidth * 2 - 1,
-                    component.getHeight() - shadeWidth * 2 - 1);
+            return new Rectangle2D.Double(shadeWidth, shadeWidth, component.getWidth() - shadeWidth * 2 - 1, component.getHeight() - shadeWidth * 2 - 1);
         }
     }
-
 
     public boolean contains(int x, int y) {
         if(shape == null || !shape.getBounds().equals(getBounds())) {
@@ -812,7 +781,6 @@ class SpotifyScroll extends BasicScrollBarUI {
         g.setColor(background);
         g.fillRect(0, 0, (int) trackBounds.getWidth(), (int) trackBounds.getHeight());
     }
-
 
     @Override
     protected JButton createDecreaseButton(int orientation) {
@@ -846,7 +814,7 @@ class SpotifyScroll extends BasicScrollBarUI {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
-        g2d.setColor(new Color(52,52,52));
+        g2d.setColor(new Color(52, 52, 52));
         g2d.translate(thumbBounds.x, thumbBounds.y);
         g2d.fillRoundRect(4, 3, (int) thumbBounds.getWidth() - 7, (int) thumbBounds.getHeight() - 6, 10, 8);
         g2d.translate(-thumbBounds.x, -thumbBounds.y);
@@ -858,7 +826,7 @@ class SpotifyScroll extends BasicScrollBarUI {
 class LoadingLabel extends JLabel {
     int degree = 0;
 
-    public LoadingLabel() {
+    public LoadingLabel(int i) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -888,7 +856,8 @@ class LoadingLabel extends JLabel {
         g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
         Color green = new Color(9, 166, 73);
-        g2d.setStroke(new BasicStroke(2));
+
+        g2d.setStroke(new BasicStroke(getHeight() / 12));
 
         g2d.setColor(green);
         int r = Math.min(getWidth(), getHeight()) - 10;

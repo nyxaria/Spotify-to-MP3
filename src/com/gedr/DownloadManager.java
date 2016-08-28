@@ -16,6 +16,9 @@ import java.awt.geom.Line2D;
 import java.io.*;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by gedr on 30/07/2016.
@@ -23,7 +26,7 @@ import java.util.Random;
 public class DownloadManager {
 
     public enum States {
-        QUEUE, RUNNING, DONE, RETRYING, EXTRACTING_DONE, ERROR, DOWNLOADING, EXTRACTING;
+        QUEUE, RUNNING, DONE, RETRYING, EXTRACTING_DONE, ERROR, DOWNLOADING, EXTRACTING
     }
 
     Playlist[] playlists;
@@ -37,6 +40,8 @@ public class DownloadManager {
 
     static File temp;
 
+    boolean downloading;
+
     public DownloadManager(Playlist[] playlists) {
         this.playlists = playlists;
 
@@ -45,10 +50,23 @@ public class DownloadManager {
 
     public void startDownload() {
         chooseOutput();
-        if(output != null)
+        if(output != null) {
+            ses.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    if(System.currentTimeMillis() - lastEvent > 45000) {
+                        if(downloading) {
+                            retryDownload();
+                            p.destroy();
+                        }
+                    }
+                }
+            }, 10, 10, TimeUnit.SECONDS);
             nextPlaylist();
-        else
+
+        } else
             finish();
+
     }
 
 
@@ -78,8 +96,8 @@ public class DownloadManager {
             trackIndex--;
         else
             retrys = -1;
-        nextTrack();
         retrys++;
+        nextTrack();
     }
 
     public void nextTrack() {
@@ -107,6 +125,7 @@ public class DownloadManager {
     public String findYoutubeUri(Track track, int i) {
         String url = "";
         if(track.id.equals("next_track")) {
+            System.out.println("URL not found for \"" + track.name + "\"");
             return "next_track";
         }
         if(!track.id.equals("")) {
@@ -115,7 +134,7 @@ public class DownloadManager {
         String keyword = null;
         switch(i) {
             case -1:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "");
                 keyword = keyword.replace(" ", "+");
 
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -124,7 +143,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 1:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics " + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics " + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
 
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -133,21 +152,21 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics" + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 //String duration = "";
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0] + " lyrics";
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0] + " lyrics";
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 4:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0];
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0];
                 keyword = keyword.replace(" ", "+");
                 duration = "&sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
@@ -155,9 +174,9 @@ public class DownloadManager {
                 break;
             case 5:
                 if(track.artists.length > 1)
-                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[1];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[1];
                 else
-                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0];
 
                 keyword = keyword.replace(" ", "+");
 
@@ -178,6 +197,7 @@ public class DownloadManager {
             if(i != -1) {
                 return findYoutubeUri(track, ++attempt);
             } else {
+                System.out.println("URL not found for \"" + track.name + "\" { keyword=\"" + keyword + " }");
                 track.id = "next_track";
                 return "next_track";
             }
@@ -187,10 +207,10 @@ public class DownloadManager {
         JSONArray array = ob.getJSONArray("items");
 
         if(array.isEmpty()) {
-            System.out.println("attempt " + (attempt) + " at getting URL...");
             if(i != -1) {
                 return findYoutubeUri(track, ++attempt);
             } else {
+                System.out.println("URL not found for \"" + track.name + "\" { keyword=\"" + keyword + " }");
                 track.id = "next_track";
                 return "next_track";
             }
@@ -201,6 +221,7 @@ public class DownloadManager {
             if(i != -1) {
                 return findYoutubeUri(track, ++attempt);
             } else {
+                System.out.println("URL not found for \"" + track.name + "\" { keyword=\"" + keyword + " }");
                 track.id = "next_track";
                 return "next_track";
             }
@@ -299,6 +320,7 @@ public class DownloadManager {
                     if(duration > currentTrack.ytDuration - 10) {
                         complete = true;
                         updateUI(currentTrack, States.DONE, "", "");
+                        System.out.println("\""+ name + "\" is already downloaded.");
                     } else {
                         file.delete();
                     }
@@ -323,6 +345,10 @@ public class DownloadManager {
         }
     }
 
+    ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+
+
+    Process p;
 
     private String executeCommand(String[] commands) {
 
@@ -332,25 +358,31 @@ public class DownloadManager {
         }
         System.out.println();
 
-        Process p;
+
         try {
             p = Runtime.getRuntime().exec(commands);
             StreamGobbler outputGobbler = new StreamGobbler(p.getInputStream(), "OUTPUT");
             StreamGobbler errorGobbler = new StreamGobbler(p.getErrorStream(), "ERROR");
             errorGobbler.start();
             outputGobbler.start();
+
+
             p.waitFor();
 
+
+
+// when finished
 
         } catch(Exception e) {
             e.printStackTrace();
             return "error";
         }
+        ses.shutdown();
 
         return output.toString();
 
     }
-
+    long lastEvent;
     private class StreamGobbler extends Thread {
         InputStream is;
         String type;
@@ -370,10 +402,12 @@ public class DownloadManager {
 
                 while((line = br.readLine()) != null) {
                     System.out.println(line);
+                    lastEvent = System.currentTimeMillis();
                     if(line.contains("Downloading webpage") || line.contains("Downloading video info webpage") || line.contains("Extracting video information") || line.contains("Downloading MPD manifest")) {
                         updateUI(currentTrack, States.EXTRACTING, level++ + "", "");
-                    }
+                    } else
                     if(line.contains("[download]")) {
+                        downloading = true;
                         if(line.substring(11, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("100")) {
                             updateUI(currentTrack, States.DOWNLOADING, "100", "");
                         } else if(!line.substring(12, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("")) {
@@ -400,6 +434,7 @@ public class DownloadManager {
                         }
                     }
                     if(line.startsWith("size=")) {
+                        downloading = false;
                         String time = line.substring(21, 29).replace(":", "");
 
                         int h = Integer.parseInt(time.substring(0, 2));
@@ -409,10 +444,12 @@ public class DownloadManager {
                         updateUI(currentTrack, States.RETRYING, s + "", "");
                     }
                     if(line.startsWith("video:")) {
+                        downloading = false;
                         updateUI(currentTrack, States.DONE, "", "");
                     }
 
                     if(line.startsWith("ERROR: ")) {
+                        downloading = false;
                         retrying = true;
                         updateUI(currentTrack, States.ERROR, "", "");
                         stop();

@@ -16,7 +16,7 @@ public class Grid extends JPanel {
 
     //Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 11);
     public Grid(Playlist[] playlists) {
-        setPreferredSize(new Dimension((int) (Main.screen.width * .6) - 24, (playlists.length) * 29));
+        setPreferredSize(new Dimension((int) (Main.frame.getWidth()) - 24, (playlists.length) * 29));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);
         setBackground(new Color(28, 28, 28));
@@ -95,8 +95,8 @@ public class Grid extends JPanel {
         }
     }
 
-    public Grid(Track[] tracklist) {
-        setPreferredSize(new Dimension((int) (Main.screen.width * .6) - 24, (tracklist.length + 1) * (29 + 8)));
+    public Grid(Track[] tracklist, String name) {
+        setPreferredSize(new Dimension((int) Main.frame.getWidth(), (tracklist.length + 1) * (29 + 8)));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);
         setBackground(new Color(28, 28, 28));
@@ -124,10 +124,9 @@ public class Grid extends JPanel {
         grid.setOpaque(false);
         JPanel flowWrap = new JPanel(new GridLayout());
         flowWrap.setOpaque(false);
-        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6) - 6, 40));
         JLabel art = new JLabel("ARTIST");
-        art.setFont(Main.fontNormal.deriveFont(12f));
         art.setForeground(Color.gray);
+        art.setFont(Main.fontNormal.deriveFont(12f));
 
         //grid.setPreferredSize(new Dimension(100, 40));
 
@@ -135,18 +134,25 @@ public class Grid extends JPanel {
         JPanel Flow = new JPanel(new GridBagLayout());
         //Flow.setPreferredSize(new Dimension(70, 40));
         //Flow.add(loadingImg);
+        JLabel playlistLabel = new JLabel(name +"      ");
+        //playlistLabel.setPreferredSize(new Dimension(300, 30));
+        playlistLabel.setFont(Main.fontBold.deriveFont(15f));
+        playlistLabel.setForeground(Color.lightGray);
         Flow.setOpaque(false);
+        Flow.add(playlistLabel);
+        flowWrap.setPreferredSize(new Dimension((int) (Main.frame.getWidth() * .6) - playlistLabel.getPreferredSize().width - 6, 40));
+
 
         grid.add(art);
         flowWrap.add(art);
         flowWrap.setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
         JPanel border = new JPanel(new BorderLayout());
-        border.add(flowWrap, BorderLayout.CENTER);
-        //border.add(Flow, BorderLayout.EAST);
+        border.add(flowWrap, BorderLayout.WEST);
+        border.add(playlistLabel, BorderLayout.EAST);
         border.setOpaque(false);
         wrap.add(border, BorderLayout.EAST);
         title.add(wrap, BorderLayout.CENTER);
-        title.setMinimumSize(new Dimension(Main.frame.getWidth(), 30));
+        title.setMinimumSize(new Dimension(Main.frame.getWidth()-10, 30));
         add(Box.createVerticalStrut(4));
         add(title);
         add(new Separator(false));
@@ -171,21 +177,21 @@ public class Grid extends JPanel {
             wrap.add(songLabel, BorderLayout.CENTER);
             flowWrap = new JPanel(new FlowLayout(FlowLayout.LEFT));
             flowWrap.setOpaque(false);
-            flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6), 30));
+            flowWrap.setPreferredSize(new Dimension((int) (Main.frame.getWidth() * .6), 30));
             String artist = "";
             for(String s : track.artists) {
                 artist += s + ", ";
             }
             artist = artist.substring(0, artist.length() - 2);
             art = new JLabel(artist);
-            art.setPreferredSize(new Dimension((int) (Main.screen.width * .6 * .6), (int) art.getPreferredSize().getHeight()));
+            art.setPreferredSize(new Dimension((int) (Main.frame.getWidth() * .6), (int) art.getPreferredSize().getHeight()));
 
             art.setForeground(new Color(240, 240, 240));
             art.setFont(Main.fontNormal.deriveFont(13f));
             flowWrap.add(art);
             wrap.add(flowWrap, BorderLayout.EAST);
             row.add(wrap, BorderLayout.CENTER);
-            row.setMinimumSize(new Dimension(Main.frame.getWidth(), 38));
+            row.setMinimumSize(new Dimension(Main.frame.getWidth()-10, 38));
             add(row, "wrap");
             if(i != tracklist.length)
                 add(new Separator(false));
