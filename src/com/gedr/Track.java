@@ -19,7 +19,7 @@ public class Track {
     public String title = "";
 
     public Track(String name, String[] artists, String album, boolean explicit, int popularity, int dur) {
-        this.name = name;
+        this.name = name.replace("/", "|");
         this.artists = artists;
         this.album = album;
         this.explicit = explicit;

@@ -115,7 +115,7 @@ public class DownloadManager {
         String keyword = null;
         switch(i) {
             case -1:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "");
                 keyword = keyword.replace(" ", "+");
 
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -124,7 +124,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 1:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official" + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics " + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
 
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -133,21 +133,21 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics" + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 //String duration = "";
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
-                keyword = track.name + " " + track.artists[0] + " lyrics";
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0] + " lyrics";
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 4:
-                keyword = track.name + " " + track.artists[0];
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0];
                 keyword = keyword.replace(" ", "+");
                 duration = "&sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
@@ -155,9 +155,9 @@ public class DownloadManager {
                 break;
             case 5:
                 if(track.artists.length > 1)
-                    keyword = track.name + " " + track.artists[1];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[1];
                 else
-                    keyword = track.name + " " + track.artists[0];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "") + " " + track.artists[0];
 
                 keyword = keyword.replace(" ", "+");
 
@@ -175,7 +175,12 @@ public class DownloadManager {
         try {
             doc = Jsoup.connect(url).ignoreContentType(true).timeout(6 * 1000).get();
         } catch(IOException e) {
-            e.printStackTrace();
+            if(i != -1) {
+                return findYoutubeUri(track, ++attempt);
+            } else {
+                track.id = "next_track";
+                return "next_track";
+            }
         }
         JSONObject ob = ((JSONObject) new JSONTokener(doc.text()).nextValue());
 
@@ -229,7 +234,7 @@ public class DownloadManager {
             }
         }
         boolean positive = false;
-        for(String query : track.name.replaceAll("[.*?]", "").replace("$", "s").split(" ")) {
+        for(String query : track.name.replaceAll("[.*?]", "").replaceAll("(.*?)", "").replace("$", "s").split(" ")) {
             if(track.title.replace("$", "s").toLowerCase().contains(query.toLowerCase())) {
                 positive = true;
             }
@@ -242,7 +247,7 @@ public class DownloadManager {
             track.id = "";
             track.ytDuration = 0;
             track.title = "";
-            System.out.println("Retrying to find URL...");
+           // System.out.println("Retrying to find URL...");
             return findYoutubeUri(track, ++i);
         }
         System.out.println("URL found for \"" + track.name + "\" { duration=" + track.ytDuration + "s, youtube_title=\"" + track.title + "\", keyword=\"" + keyword + "\", id=\"" + track.id + "\" }");
@@ -294,6 +299,8 @@ public class DownloadManager {
                     if(duration > currentTrack.ytDuration - 10) {
                         complete = true;
                         updateUI(currentTrack, States.DONE, "", "");
+                    } else {
+                        file.delete();
                     }
                 }
                 if(!complete) {

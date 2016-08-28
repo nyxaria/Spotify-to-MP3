@@ -348,14 +348,14 @@ public class Main {
         grid = new Grid(playlists);
         JPanel wrapp = new JPanel();
         wrapp.setLayout(new BoxLayout(wrapp, BoxLayout.Y_AXIS));
-        wrapp.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8) * (playlists.length)));
+        wrapp.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 10) * (playlists.length)));
         wrapp.setOpaque(true);
         //wrapp.setBackground(new Color(38, 38, 38));
 
         wrapp.add(grid);
         JPanel flow = new JPanel(new FlowLayout(FlowLayout.CENTER));
         flow.setOpaque(false);
-        flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 8) * (playlists.length )));
+        flow.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 10) * (playlists.length )));
 
         flow.add(wrapp);
         scroll = new JScrollPane(flow, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -476,8 +476,8 @@ public class Main {
                 }
 
                 ArrayList<Playlist> toDownload = new ArrayList<Playlist>();
-                for(JCheckBox box : grid.checkBoxes) {
-                    if(box.isSelected()) {
+                for(SpotifyCheckBox box : grid.checkBoxes) {
+                    if(box.checked) {
                         for(Playlist p : playlists) {
                             if(p.name.equals(box.getName())) {
                                 toDownload.add(p);
@@ -490,7 +490,7 @@ public class Main {
                     return;
                 }
 
-                int height = grid.row.getHeight(); //adjust for dividers
+                int height = 39; //adjust for dividers
                 pane.removeAll();
                 pane.repaint();
                 pane.revalidate();
@@ -501,20 +501,21 @@ public class Main {
                 int index = 0;
                 for(Playlist playlist : toDownload) {
                     Grid grid = new Grid(playlist.tracks);
-                    grid.setPreferredSize(new Dimension(Main.frame.getSize().width, height* (playlist.tracks.length+1)));
+                    System.out.println(playlist.tracks.length);
+                    grid.setPreferredSize(new Dimension(Main.frame.getSize().width, height* (playlist.tracks.length+1) + 5*playlist.tracks.length+1));
                     tracklistWrap.add(grid);
                     if(index++ +1!= toDownload.size()) {
                         Separator sep = new Separator(true);
                         tracklistWrap.add(Box.createVerticalStrut(12));
                         sep.setMinimumSize(new Dimension(Main.frame.getWidth()-20, 20));
                         tracklistWrap.add(sep);
-                        tracklistWrap.add(Box.createVerticalStrut(4));
+                        tracklistWrap.add(Box.createVerticalStrut(9));
 
                     }
                     size += playlist.tracks.length + 1;
                 }
                 trackNumber = size;
-                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (int) 3 + ((index-1)*18) + (height)* (size)));
+                tracklistWrap.setPreferredSize(new Dimension(Main.frame.getSize().width, (int) ((index-1)*22) + (height)* (size)));
 
                 tracklistWrap.setOpaque(false);
                 JPanel flow = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -773,7 +774,7 @@ class HintTextField extends JTextField implements FocusListener {
         if(red.getAlpha() > 0) {
             g2d.setColor(red);
             g2d.setFont(Main.fontBold.deriveFont(16f));
-            g2d.drawString("!", getWidth() - 16, 20);
+            g2d.drawString("!", getWidth() - 17, 20);
         }
 
 
@@ -845,9 +846,9 @@ class SpotifyScroll extends BasicScrollBarUI {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         g2d.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
-        g2d.setColor(new Color(140, 140, 140));
+        g2d.setColor(new Color(52,52,52));
         g2d.translate(thumbBounds.x, thumbBounds.y);
-        g2d.fillRoundRect(4, 2, (int) thumbBounds.getWidth() - 9, (int) thumbBounds.getHeight() - 2, 10, 8);
+        g2d.fillRoundRect(4, 3, (int) thumbBounds.getWidth() - 7, (int) thumbBounds.getHeight() - 6, 10, 8);
         g2d.translate(-thumbBounds.x, -thumbBounds.y);
         g2d.dispose();
 

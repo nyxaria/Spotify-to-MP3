@@ -62,7 +62,7 @@ public class SpotifySession {
 
             for (SimplePlaylist playlist : playlistsPage.getItems()) {
                 if(playlist.getOwner().getId().equals(id)) {
-                    playlistList.add(new Playlist(playlist.getName(), playlist.getId(), playlist.getOwner().getId(), null));
+                    playlistList.add(new Playlist(playlist.getName(), playlist.getId(), playlist.getOwner().getId(), playlist.getTracks().getTotal(), null));
                 }
             }
         } catch (Exception e) {
@@ -74,26 +74,34 @@ public class SpotifySession {
 
 
     public Track[] getTracks(Playlist playlist) {
-        final PlaylistTracksRequest request = api.getPlaylistTracks(id, playlist.id).build();
+        PlaylistTracksRequest request = null;
         ArrayList<Track> trackList = new ArrayList<>();
 
-        try {
-            final Page<PlaylistTrack> page = request.get();
+        int offset = 0;
+        while(trackList.size() < playlist.total) {
+            request = api.getPlaylistTracks(id, playlist.id).offset(offset).limit(100).build();
+            offset += 100;
+            try {
+                final Page<PlaylistTrack> page = request.get();
 
-            final List<PlaylistTrack> playlistTracks = page.getItems();
+                final List<PlaylistTrack> playlistTracks = page.getItems();
 
-            for (PlaylistTrack playlistTrack : playlistTracks) {
-                com.wrapper.spotify.models.Track track = playlistTrack.getTrack();
-                ArrayList<String> artists = new ArrayList<>();
-                for(SimpleArtist artist : track.getArtists()) {
-                    artists.add(artist.getName());
+                for (PlaylistTrack playlistTrack : playlistTracks) {
+                    com.wrapper.spotify.models.Track track = playlistTrack.getTrack();
+                    ArrayList<String> artists = new ArrayList<>();
+                    for(SimpleArtist artist : track.getArtists()) {
+                        artists.add(artist.getName());
+                    }
+
+                    trackList.add(new Track(track.getName(), artists.toArray(new String[artists.size()]), track.getAlbum().getName(), track.isExplicit(), track.getPopularity(), track.getDuration()));
                 }
 
-                trackList.add(new Track(track.getName(), artists.toArray(new String[artists.size()]), track.getAlbum().getName(), track.isExplicit(), track.getPopularity(), track.getDuration()));
+            } catch (Exception e) {
+                playlist.tracks = trackList.toArray(new Track[trackList.size()]);
+                return playlist.tracks;
             }
-
-        } catch (Exception e) {
         }
+
         playlist.tracks = trackList.toArray(new Track[trackList.size()]);
         return playlist.tracks;
     }
