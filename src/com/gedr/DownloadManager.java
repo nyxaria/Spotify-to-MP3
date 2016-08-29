@@ -64,14 +64,11 @@ public class DownloadManager {
             }, 10, 10, TimeUnit.SECONDS);
             nextPlaylist();
 
-        } else
-            finish();
+        } else finish();
 
     }
 
-
     public void chooseOutput() {
-
 
         //}
     }
@@ -92,17 +89,15 @@ public class DownloadManager {
 
     private void retryDownload() {
         System.out.println("Retrying download...");
-        if(retrys < 2)
-            trackIndex--;
-        else
-            retrys = -1;
+        if(retrys < 2) trackIndex--;
+        else retrys = -1;
         retrys++;
         nextTrack();
     }
 
     public void nextTrack() {
         //if(trackIndex > 7 && playlistIndex != 0)
-            //Main.scrollDown();
+        //Main.scrollDown();
         if(trackIndex < currentPlaylist.tracks.length) {
             attempt = 1;
             retry = 0;
@@ -134,7 +129,7 @@ public class DownloadManager {
         String keyword = null;
         switch(i) {
             case -1:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "");
                 keyword = keyword.replace(" ", "+");
 
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -143,7 +138,7 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 1:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics " + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics " + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
 
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
@@ -152,31 +147,31 @@ public class DownloadManager {
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics" + (track.explicit ? " explicit" : "");
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 //String duration = "";
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0] + " lyrics";
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0] + " lyrics";
                 keyword = keyword.replace(" ", "+");
                 duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
                 url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 4:
-                keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0];
+                keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0];
                 keyword = keyword.replace(" ", "+");
                 duration = "&sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
 
-                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + duration+ "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + duration + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 5:
                 if(track.artists.length > 1)
-                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[1];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[1];
                 else
-                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(","").replace(")","").replace(".", "").replace("\"","") + " " + track.artists[0];
+                    keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0];
 
                 keyword = keyword.replace(" ", "+");
 
@@ -268,7 +263,7 @@ public class DownloadManager {
             track.id = "";
             track.ytDuration = 0;
             track.title = "";
-           // System.out.println("Retrying to find URL...");
+            // System.out.println("Retrying to find URL...");
             return findYoutubeUri(track, ++i);
         }
         System.out.println("URL found for \"" + track.name + "\" { duration=" + track.ytDuration + "s, youtube_title=\"" + track.title + "\", keyword=\"" + keyword + "\", id=\"" + track.id + "\" }");
@@ -319,26 +314,26 @@ public class DownloadManager {
                     Long duration = (Long) properties.get("duration") / 1000000;
                     if(duration > currentTrack.ytDuration - 10) {
                         complete = true;
+                        currentTrack.gui.out = output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3";
                         updateUI(currentTrack, States.DONE, "", "");
-                        System.out.println("\""+ name + "\" is already downloaded.");
+                        System.out.println("\"" + name + "\" is already downloaded.");
                     } else {
                         file.delete();
                     }
                 }
                 if(!complete) {
                     executeCommand(new String[]{Main.youtube_dl, "--audio-quality", "0", "-o", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", url});
-                    if(retrying)
-                        retryDownload();
-                    else
+                    if(retrying) retryDownload();
+                    else {
+                        currentTrack.gui.out = output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3";
                         executeCommand(new String[]{Main.ffmpeg, "-i", temp.getAbsolutePath() + "/" + name + " - " + artist + ".flv", "-ab", "256k", output.getAbsolutePath() + "/" + currentPlaylist.name + "/" + name + " - " + artist + ".mp3"}); // ,"-ac", "2", "-ab", "128k"
+                    }
                 }
             } catch(Exception e) {
 
                 e.printStackTrace();
-                if(retry++ <= 3)
-                    downloadTrack(name, artist, url);
-                else
-                    nextTrack();
+                if(retry++ <= 3) downloadTrack(name, artist, url);
+                else nextTrack();
             }
 
             nextTrack();
@@ -346,7 +341,6 @@ public class DownloadManager {
     }
 
     ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-
 
     Process p;
 
@@ -358,20 +352,15 @@ public class DownloadManager {
         }
         System.out.println();
 
-
         try {
             p = Runtime.getRuntime().exec(commands);
             StreamGobbler outputGobbler = new StreamGobbler(p.getInputStream(), "OUTPUT");
             StreamGobbler errorGobbler = new StreamGobbler(p.getErrorStream(), "ERROR");
             errorGobbler.start();
             outputGobbler.start();
-
-
             p.waitFor();
 
-
-
-// when finished
+            // when finished
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -382,7 +371,9 @@ public class DownloadManager {
         return output.toString();
 
     }
+
     long lastEvent;
+
     private class StreamGobbler extends Thread {
         InputStream is;
         String type;
@@ -405,8 +396,7 @@ public class DownloadManager {
                     lastEvent = System.currentTimeMillis();
                     if(line.contains("Downloading webpage") || line.contains("Downloading video info webpage") || line.contains("Extracting video information") || line.contains("Downloading MPD manifest")) {
                         updateUI(currentTrack, States.EXTRACTING, level++ + "", "");
-                    } else
-                    if(line.contains("[download]")) {
+                    } else if(line.contains("[download]")) {
                         downloading = true;
                         if(line.substring(11, 17).replace(" ", "").replaceAll("[^\\d.]", "").equals("100")) {
                             updateUI(currentTrack, States.DOWNLOADING, "100", "");
@@ -421,8 +411,7 @@ public class DownloadManager {
 
                                 int cut = 0;
                                 int kb = 0;
-                                if(speed.contains("K"))
-                                    kb = 1;
+                                if(speed.contains("K")) kb = 1;
                                 if(!speed.replaceAll("[^\\d.]", "").equals(""))
                                     speed = speed.substring(cut, speed.indexOf(".") + 3 - kb) + "\n" + speed.substring(speed.indexOf(".") + 3, speed.length());
                                 updateUI(currentTrack, States.DOWNLOADING, line.substring(12, 17).replace(" ", ""), speed);
@@ -463,7 +452,6 @@ public class DownloadManager {
         }
     }
 
-
     public void finish() {
         deleteDirectory(temp);
         System.exit(0);
@@ -477,10 +465,8 @@ public class DownloadManager {
             File[] files = directory.listFiles();
             if(null != files) {
                 for(File file : files)
-                    if(file.isDirectory())
-                        deleteDirectory(file);
-                    else
-                        file.delete();
+                    if(file.isDirectory()) deleteDirectory(file);
+                    else file.delete();
             }
         }
 
@@ -501,7 +487,6 @@ public class DownloadManager {
 //            } else { //unix
 //
 //            }
-
 
 //                executeCommand(new String[]{"/bin/bash", "-c", "echo password |sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/youtube-dl"});
 //                executeCommand(new String[]{"/bin/bash", "-c", "echo password |sudo chmod a+rx /usr/local/youtube-dl"/});

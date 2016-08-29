@@ -198,14 +198,13 @@ public class Main {
             }
         }).start();
 
-        frame = new JFrame("generic title");
+        frame = new JFrame("Spotify to MP3");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //handle that later
         frame.setSize(864, 540);
         frame.setLocation((int) screen.getWidth() / 2 - 864 / 2, (int) screen.getHeight() / 2 - 540 / 2);
         frame.setResizable(false);
 
-        System.out.println(frame.getWidth() + ", " + frame.getHeight());
         pane = (JPanel) frame.getContentPane();
         pane.setOpaque(true);
         pane.setBackground(new Color(28, 28, 28));
@@ -362,7 +361,7 @@ public class Main {
         JPanel gridBag = new JPanel(new GridBagLayout());
         gridBag.add(loadingImg);
         gridBag.setOpaque(false);
-        gridBag.setPreferredSize(new Dimension(100, 50));
+        gridBag.setPreferredSize(new Dimension(70, 50));
 
         JPanel divider = new JPanel(new BorderLayout());
         divider.add(gridBag, BorderLayout.CENTER);

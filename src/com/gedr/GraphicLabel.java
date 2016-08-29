@@ -12,6 +12,8 @@ public class GraphicLabel extends JLabel {
     DownloadManager.States state = DownloadManager.States.QUEUE;
     Track track;
     String progress, speed;
+    boolean done;
+    public String out;
 
     public GraphicLabel(Track track) {
         this.track = track;
@@ -74,6 +76,7 @@ public class GraphicLabel extends JLabel {
             case DONE:
                 g2.setColor(green);
                 g2.fillRect(xOff, 0, getHeight(), getHeight());
+                done = true;
                 break;
             case ERROR:
                 g2.setColor(Color.orange);

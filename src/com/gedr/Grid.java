@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -13,6 +14,10 @@ public class Grid extends JPanel {
 
     public JPanel row;
     public ArrayList<SpotifyCheckBox> checkBoxes = new ArrayList<>();
+
+    String out;
+    private JPanel selected;
+    private JPanel hover;
 
     //Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 11);
     public Grid(Playlist[] playlists) {
@@ -161,8 +166,54 @@ public class Grid extends JPanel {
             JPanel row = new JPanel(new BorderLayout());
             row.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
 
-            row.setOpaque(false);
+            row.setOpaque(true);
+            row.setBackground(new Color(28,28,28));
             GraphicLabel check = new GraphicLabel(track);
+
+            MouseListener launchMP3Listener = new MouseListener() {
+                long last = System.currentTimeMillis();
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if(System.currentTimeMillis() - last < 250) {
+                        if(!check.done) return;
+                        System.out.println(check.out);
+                        if(new File(check.out).exists()) if(Desktop.isDesktopSupported()) try {
+                            Desktop.getDesktop().open(new File(check.out));
+                        } catch(IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        if(selected != null) selected.setBackground(new Color(28, 28, 28));
+                        selected = row;
+                        selected.setBackground(new Color(48, 48, 48));
+                    } else {
+                        last = System.currentTimeMillis();
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    hover = row;
+                    hover.setBackground(new Color(38,38,38));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if(!hover.equals(selected)) hover.setBackground(new Color(28, 28, 28));
+                    else hover.setBackground(new Color(48, 48, 48));
+
+                }
+            };
+
             //check.setBorder(BorderFactory.createLineBorder(Color.gray));
             prefDim.height += 10;
             check.setPreferredSize(prefDim);
@@ -188,6 +239,8 @@ public class Grid extends JPanel {
 
             art.setForeground(new Color(240, 240, 240));
             art.setFont(Main.fontNormal.deriveFont(13f));
+
+            row.addMouseListener(launchMP3Listener);
             flowWrap.add(art);
             wrap.add(flowWrap, BorderLayout.EAST);
             row.add(wrap, BorderLayout.CENTER);

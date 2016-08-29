@@ -24,7 +24,7 @@ class Separator extends JComponent {
         super.paintComponent(g);
         g.setColor(seperatorColor);
         if(!thick) {
-            g.fillRect(5, 0, getWidth() - 5, 2);
+            g.fillRect(0, 0, getWidth() - 5, 2);
         } else {
             g.fillRect(10, getHeight()/2-1, getWidth() - 10, 2);
         }
