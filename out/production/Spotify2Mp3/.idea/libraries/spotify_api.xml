@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="spotify-api">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/spotify-web-api-java-master.zip!/spotify-web-api-java-master/examples" />
+      <root url="jar://$USER_HOME$/Downloads/spotify-web-api-java-master.zip!/spotify-web-api-java-master/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/spotify-web-api-java-master.zip!/spotify-web-api-java-master/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

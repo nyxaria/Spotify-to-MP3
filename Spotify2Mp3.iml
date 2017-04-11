@@ -8,8 +8,28 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="se.michaelthelin.spotify:spotify-web-api-java:1.5.0" level="project" />
     <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.9.2" level="project" />
     <orderEntry type="library" exported="" name="com.googlecode.soundlibs:mp3spi:1.9.5.4" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/commons-httpclient-3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/commons-httpclient-2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="spotify-api" level="project" />
+    <orderEntry type="library" name="commons-httpclient-3.0" level="project" />
+    <orderEntry type="library" name="se.michaelthelin.spotify:spotify-web-api-java:1.5.0" level="project" />
   </component>
 </module>
