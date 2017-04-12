@@ -6,7 +6,7 @@ Uses `youtube-dl` and `ffmpeg`, alongside the `Youtube` and `Spotify` API to get
 It is self-contained and is compatible with Windows and Mac. *only tested on OSX*
 
 
-APIs Used:
+Packages Used:
 - Spotify Web Java API: https://github.com/thelinmichael/spotify-web-api-java
 - youtube-dl: https://github.com/rg3/youtube-dl
 - ffmpeg: https://github.com/FFmpeg/FFmpeg
