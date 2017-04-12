@@ -1,0 +1,17 @@
+
+isquid:S3008"TRename this field "MAX_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À‘®›
+‚"squid:ClassVariableVisibilityCheck"QMake album a static final constant or non-public and provide accessors if needed.(·àµúÿÿÿÿ
+=squid:S1659"#Declare "album" on a separate line.(·àµúÿÿÿÿ
+‡"squid:ClassVariableVisibilityCheck"VMake ytDuration a static final constant or non-public and provide accessors if needed.(™àç‹ıÿÿÿÿ
+€"squid:ClassVariableVisibilityCheck"TMake explicit a static final constant or non-public and provide accessors if needed.(¢‹¯
+€"squid:ClassVariableVisibilityCheck"OMake gui a static final constant or non-public and provide accessors if needed.(Ÿ¨ìøÿÿÿÿ
+Dsquid:S1444"/Make this "public static MAX_WIDTH" field final(À‘®›
+‚"squid:ClassVariableVisibilityCheck"VMake popularity a static final constant or non-public and provide accessors if needed.(¸å¸¸
+"squid:ClassVariableVisibilityCheck"NMake id a static final constant or non-public and provide accessors if needed.(Ì¨ÑÊüÿÿÿÿ
+ˆ"squid:ClassVariableVisibilityCheck"WMake videoTarget a static final constant or non-public and provide accessors if needed.(­ÃÖ¸üÿÿÿÿ
+„"squid:ClassVariableVisibilityCheck"SMake artists a static final constant or non-public and provide accessors if needed.(©×ñ¸úÿÿÿÿ
+‚"squid:ClassVariableVisibilityCheck"QMake title a static final constant or non-public and provide accessors if needed.(Üëèßÿÿÿÿÿ
+…"squid:ClassVariableVisibilityCheck"TMake duration a static final constant or non-public and provide accessors if needed.(È°©éøÿÿÿÿ
+"squid:ClassVariableVisibilityCheck"PMake name a static final constant or non-public and provide accessors if needed.(·àµúÿÿÿÿ
+"squid:ClassVariableVisibilityCheck"UMake MAX_WIDTH a static final constant or non-public and provide accessors if needed.(À‘®›
+~"squid:ClassVariableVisibilityCheck"RMake target a static final constant or non-public and provide accessors if needed.(ê·…Ì

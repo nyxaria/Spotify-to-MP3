@@ -167,7 +167,7 @@ public class HintTextField extends JTextField implements FocusListener {
 
     public void startAnimation() {
         new Thread(() -> {
-            while(red.getAlpha() != 0) {
+            while(red.getAlpha() > 5) {
                 long now = System.currentTimeMillis();
                 while(System.currentTimeMillis() < now + 18) {
                 }

@@ -7,69 +7,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9fa8757-2007-40e1-a6a1-bb77eb745c54" name="Default" comment="version 1: everything seems to be in working order (fingers crossed)">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/commons_httpclient_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/spotify_api.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyCheckBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/DownloadManager$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/DownloadManager$States.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/DownloadManager$StreamGobbler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/DownloadManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/GraphicLabel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/GraphicLabel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Grid$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Grid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/HintTextField$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/HintTextField.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/LoadingLabel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/LoadingLabel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$3$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$3$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$5$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Playlist.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Separator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/SpotifyCheckBox.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/SpotifyScroll.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/SpotifySession$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/SpotifySession.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Track.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UnzipUtility.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/org/org.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/DownloadManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/GraphicLabel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Grid.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Playlist.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Separator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/SpotifySession.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Track.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UnzipUtility.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/org/org.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/gedr/UnzipUtility.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/DownloadManager.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/GraphicLabel.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/Grid.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/Grid.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/Playlist.java" afterPath="$PROJECT_DIR$/src/com/gedr/Modules/Playlist.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/Separator.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/Separator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/SpotifySession.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/gedr/Track.java" afterPath="$PROJECT_DIR$/src/com/gedr/Modules/Track.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/U.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/UButton.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/ULabel.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Spotify 2 MpX.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/exes/youtube-dl_old" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/exes/youtube-dl_old" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/exes/youtube-dl_old" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/exes/youtube-dl" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/exes/youtube-dl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/exes/youtube-dl" afterPath="$PROJECT_DIR$/src/exes/youtube-dl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$States.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$States.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$StreamGobbler.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$StreamGobbler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/Global.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/Global.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/JarHandler.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/JarHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/GraphicLabel$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/GraphicLabel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/HintTextField.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/HintTextField.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/SpotifyScroll.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/SpotifyScroll.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spotify2Mp3.iml" afterPath="$PROJECT_DIR$/Spotify2Mp3.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/Spotify2Mp3.iml" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/Spotify2Mp3.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Main.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/DownloadManager.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/DownloadManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/Global.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/Global.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/JarHandler.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/JarHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/SpotifySession.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/SpotifySession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/GraphicLabel.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/GraphicLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/SpotifyScroll.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/SpotifyScroll.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Main.java" afterPath="$PROJECT_DIR$/src/com/gedr/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" />
     </list>
     <ignored path="Spotify 2 MpX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+              <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -105,34 +81,39 @@
         <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1637#1638#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphicLabel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/gedr/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26418787">
-              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-              <folding />
+            <state vertical-scroll-proportion="0.20547946">
+              <caret line="204" column="63" selection-start-line="204" selection-start-column="63" selection-end-line="204" selection-end-column="63" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6037#6038#0" expanded="true" />
+                <element signature="e#6086#6087#0" expanded="true" />
+                <element signature="class#6725:7216" expanded="false" />
+                <element signature="class#7864:8296" expanded="false" />
+                <element signature="class#8339:8942" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gedr/Main.java">
+      <file leaf-file-name="UButton.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/UButton.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#969#970#0" expanded="true" />
-                <element signature="e#995#996#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="34" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -152,7 +133,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,23 +141,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grid.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/Grid.java">
+      <file leaf-file-name="GraphicLabel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
-              <folding>
-                <element signature="class#6196:7700" expanded="false" />
-              </folding>
+              <caret line="34" column="29" selection-start-line="32" selection-start-column="8" selection-end-line="34" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpotifyCheckBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/SpotifyCheckBox.java">
+      <file leaf-file-name="ULabel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/ULabel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+              <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoadingLabel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="44" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -186,7 +175,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+              <caret line="169" column="36" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -212,10 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/EncryptionChunkReader.java" />
-        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/FileHeaderReader.java" />
-        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/FullRequestInputStream.java" />
-        <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/LanguageListReader.java" />
         <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/MetadataReader.java" />
         <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/ModificationResult.java" />
         <option value="$PROJECT_DIR$/src/org/jaudiotagger/audio/asf/io/RandomAccessFileInputstream.java" />
@@ -249,20 +234,24 @@
         <option value="$PROJECT_DIR$/src/com/wrapper/spotify/models/AlbumType.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/SpotifySession.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/DownloadManager.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/UI/Separator.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/Grid.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/Modules/Playlist.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/UI/SpotifyCheckBox.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" />
-        <option value="$PROJECT_DIR$/src/com/gedr/Main.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/UI/Grid.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java" />
+        <option value="$PROJECT_DIR$/Spotify2Mp3.iml" />
+        <option value="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" />
         <option value="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/U.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/UButton.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/ULabel.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/gedr/Main.java" />
       </list>
     </option>
   </component>
@@ -316,21 +305,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Spotify2Mp3" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Spotify 2 MpX">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -491,6 +465,21 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Spotify 2 MpX">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -500,17 +489,16 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/commons-httpclient-3.0.jar!/" />
+    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/se/michaelthelin/spotify/spotify-web-api-java/1.5.0/spotify-web-api-java-1.5.0.jar!/" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/gedr/Desktop/Spotify 2 MpX/src/com/gedr/DownloadManager.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/exes/mac" />
-      <recent name="$PROJECT_DIR$/src/exes" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.gedr.Managers" />
+      <recent name="com.gedr" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -518,9 +506,10 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.gedr.UI" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.gedr.Managers" />
-      <recent name="com.gedr" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/exes/mac" />
+      <recent name="$PROJECT_DIR$/src/exes" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -824,7 +813,6 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24236111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -836,6 +824,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -858,7 +847,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -867,25 +856,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gedr/Modules/Track.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -900,8 +870,11 @@
           <caret line="508" column="0" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -920,7 +893,6 @@
           <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -939,8 +911,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -959,7 +934,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -978,8 +952,11 @@
           <caret line="483" column="53" selection-start-line="483" selection-start-column="53" selection-end-line="483" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1014,7 +991,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1033,8 +1009,11 @@
           <caret line="483" column="53" selection-start-line="483" selection-start-column="53" selection-end-line="483" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1053,7 +1032,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1064,8 +1042,11 @@
           <caret line="483" column="53" selection-start-line="483" selection-start-column="53" selection-end-line="483" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1092,7 +1073,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1103,8 +1083,11 @@
           <caret line="483" column="53" selection-start-line="483" selection-start-column="53" selection-end-line="483" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1137,7 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.296296">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,9 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.962963">
           <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
-          <folding>
-            <element signature="e#9972#9973#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1163,7 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.1111112">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1171,10 +1148,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-          <folding>
-            <element signature="e#4364#4379#0" expanded="true" />
-            <element signature="e#4785#4800#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1182,15 +1155,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14677104">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1223,54 +1187,31 @@
         <state vertical-scroll-proportion="0.33247423">
           <caret line="7863" column="16" selection-start-line="7863" selection-start-column="16" selection-end-line="7863" selection-end-column="16" />
           <folding>
-            <element signature="e#292256#292257#0" expanded="true" />
-            <element signature="e#292283#292284#0" expanded="true" />
+            <element signature="e#292256#292257#0" expanded="false" />
+            <element signature="e#292283#292284#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spotify2Mp3.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.99804306">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/U.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/Global.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1287,10 +1228,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home/src.zip!/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1198" column="16" selection-start-line="1198" selection-start-column="16" selection-end-line="1198" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="29" selection-start-line="32" selection-start-column="8" selection-end-line="34" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/UButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding>
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+          <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/ULabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="36" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1298,19 +1308,25 @@
     <entry file="file://$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gedr/UI/GraphicLabel.java">
+    <entry file="file://$PROJECT_DIR$/src/com/gedr/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26418787">
-          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-          <folding />
+        <state vertical-scroll-proportion="0.20547946">
+          <caret line="204" column="63" selection-start-line="204" selection-start-column="63" selection-end-line="204" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="class#6725:7216" expanded="false" />
+            <element signature="class#7864:8296" expanded="false" />
+            <element signature="class#8339:8942" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1380,7 +1396,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>commons-httpclient-3.0</last-edited>
+          <last-edited>se.michaelthelin.spotify:spotify-web-api-java:1.5.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

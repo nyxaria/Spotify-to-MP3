@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,29 +31,35 @@ public class Main {
     static JPanel formPane;
     private JButton downloadButton;
 
+    JPanel contentPane;
+
     static Grid grid;
     private HintTextField idField;
-    public static LoadingLabel loadingImg;
+
+    private static boolean navBarClicked;
+    private static Point mouseCache = new Point();
+    private static Point initialPosition;
+    public static JPanel navBarPane;
+    public static ULabel statusLabel;
 
     public static void main(String[] args) {
+
+        try {
+            Global.fontNormal = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Montserrat-Light.otf"));
+            Global.fontThin = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Montserrat-Hairline.otf"));
+            Global.fontBold = Font.createFont(Font.TRUETYPE_FONT, Main.class.getResourceAsStream("/Montserrat-Regular.otf"));
+        } catch(FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
         new Main();
     }
 
     private MouseListener hoverListener = new MouseListener() {
-        @Override
-        public void mouseClicked(MouseEvent e) {}
-
-        @Override
-        public void mousePressed(MouseEvent e) {}
-
-        @Override
-        public void mouseReleased(MouseEvent e) {}
-
-        @Override
-        public void mouseEntered(MouseEvent e) {((JComponent) e.getSource()).setForeground(Color.white);}
-
-        @Override
-        public void mouseExited(MouseEvent e) {
+        @Override public void mouseClicked(MouseEvent e) {}
+        @Override public void mousePressed(MouseEvent e) {}
+        @Override public void mouseReleased(MouseEvent e) {}
+        @Override public void mouseEntered(MouseEvent e) {((JComponent) e.getSource()).setForeground(Color.white);}
+        @Override public void mouseExited(MouseEvent e) {
             ((JComponent) e.getSource()).setForeground(Color.gray);
         }
     };
@@ -77,21 +84,39 @@ public class Main {
 
     public Main() {
 
+        frame = new JFrame("Spotify to MP3");
+        frame.setUndecorated(true);
+        frame.setBackground(new Color(0, 0, 0, 0));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //handle that later
+        frame.setSize(864, 540);
+        frame.setLocation((int) screen.getWidth() / 2 - 864 / 2, (int) screen.getHeight() / 2 - 540 / 2);
+        frame.setResizable(false);
+
+        contentPane = new JPanel(new BorderLayout()) { //rounded corners
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                RenderingHints qualityHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                qualityHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                g2.setRenderingHints(qualityHints);
+                g2.setPaint(Global.darkerGray);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 6, 6);
+                g2.dispose();
+            }
+        };
+        contentPane.setOpaque(false);
+        frame.setContentPane(contentPane);
+
+        setupTitleBar();
+
         try {
             initialize();
         } catch(Exception e) {
             e.printStackTrace();
         }
 
-        frame = new JFrame("Spotify to MP3");
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //handle that later
-        frame.setSize(864, 540);
-        frame.setLocation((int) screen.getWidth() / 2 - 864 / 2, (int) screen.getHeight() / 2 - 540 / 2);
-        frame.setResizable(false);
-
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Global.darkerGray);
+        mainPanel.setOpaque(false);
 
         JPanel center = new JPanel(new GridBagLayout());
 
@@ -129,9 +154,108 @@ public class Main {
         center.add(formPane);
 
         mainPanel.add(BorderLayout.CENTER, center);
-        frame.setContentPane(mainPanel);
+        contentPane.add(mainPanel, BorderLayout.CENTER);
         frame.setVisible(true);
         idField.transferFocus();
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+
+            @Override
+            public void run() {
+                Global.shutdown();
+            }
+
+        });
+    }
+
+    private void setupTitleBar() {
+        navBarPane = new JPanel();
+        navBarPane.setOpaque(false);
+        navBarPane.setBackground(new Color(0, 0, 0, 0));
+        navBarPane.setLayout(new BorderLayout());
+        String alignmentArg = BorderLayout.EAST;
+        if(System.getProperty("os.name").toLowerCase().contains("mac")) {
+            alignmentArg = BorderLayout.WEST;
+        }
+
+        UButton exitButton = new UButton("icon:x", U.Size.Small, U.Shape.Square, true);
+        exitButton.setBackground(new Color(0, 0, 0, 0));
+        exitButton.setOpaque(false);
+
+        exitButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Global.shutdown();
+                System.exit(0);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+        statusLabel = new ULabel("", U.Size.Tiny, U.Shape.Normal, false, U.Style.Plain);
+        statusLabel.setBorder(BorderFactory.createEmptyBorder(6,2,0,4));
+        statusLabel.inverted(true);
+
+        JPanel leftWrap = new JPanel(new BorderLayout());
+        JPanel labelWrap = new JPanel(new BorderLayout());
+        labelWrap.add(statusLabel, BorderLayout.NORTH);
+        labelWrap.setOpaque(false);
+        leftWrap.add(labelWrap, BorderLayout.CENTER);
+        leftWrap.add(exitButton, BorderLayout.WEST);
+        leftWrap.setOpaque(false);
+        navBarPane.add(leftWrap, alignmentArg);
+
+        navBarPane.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if(navBarClicked) {
+                    frame.setLocation((int) (initialPosition.getX() - mouseCache.getX() + e.getXOnScreen()), (int) (initialPosition.getY() - mouseCache.getY() + e.getYOnScreen()));
+                }
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {}
+        });
+        navBarPane.addMouseListener(new MouseListener() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                navBarClicked = true;
+                initialPosition = frame.getLocationOnScreen();
+                mouseCache = e.getLocationOnScreen();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) { navBarClicked = false; }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+
+//        JPanel centerWrap = new JPanel(new GridBagLayout());
+//        ULabel navBarTitle = new ULabel("Spotify to MP3", U.Size.Smaller, U.Shape.Normal, false, U.Style.Plain);
+//        navBarTitle.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, exitButton.getPreferredSize().width));
+//        navBarTitle.setPreferredSize(new Dimension(navBarTitle.getPreferredSize().width, 20));
+//        navBarTitle.inverted(true);
+//        navBarTitle.setForeground(new Color(240, 240, 240));
+//        centerWrap.add(navBarTitle);
+//        centerWrap.setOpaque(false);
+        navBarPane.setPreferredSize(new Dimension(navBarPane.getPreferredSize().width, 40));
+        contentPane.add(navBarPane, BorderLayout.NORTH);
     }
 
     public void setupPlaylistGrid(Playlist[] playlists) {
@@ -139,6 +263,7 @@ public class Main {
         mainPanel.setBackground(Global.darkerGray);
 
         grid = new Grid(playlists);
+
         JPanel wrapp = new JPanel();
         wrapp.setLayout(new BoxLayout(wrapp, BoxLayout.Y_AXIS));
         wrapp.setPreferredSize(new Dimension(Main.frame.getSize().width, (29 + 9) * (playlists.length + 1)));
@@ -152,42 +277,24 @@ public class Main {
         JScrollPane scroll = setupScrollPane(flow);
 
         mainPanel.add(BorderLayout.CENTER, scroll);
-        loadingImg = new LoadingLabel(4);
-        loadingImg.setPreferredSize(new Dimension(42, 42));
-        JPanel gridBag = new JPanel(new GridBagLayout());
-        gridBag.add(loadingImg);
-        gridBag.setOpaque(false);
-        gridBag.setPreferredSize(new Dimension(70, 50));
-
-        JPanel divider = new JPanel(new BorderLayout());
-        divider.add(gridBag, BorderLayout.CENTER);
-        divider.setOpaque(false);
 
         downloadButton = new JButton("Download Selected");
         downloadButton.setFont(Global.fontNormal.deriveFont(14f));
         downloadButton.setForeground(Color.gray);
         downloadButton.addMouseListener(hoverListener);
-        downloadButton.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 5));
+        downloadButton.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
         downloadButton.setOpaque(false);
 
-        JPanel flowWrap = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        flowWrap.setOpaque(false);
-        flowWrap.setPreferredSize(new Dimension((int) (Main.screen.width * .6 - loadingImg.getPreferredSize().getWidth()), 50));
-        JPanel gridWrap = new JPanel(new GridBagLayout());
-        gridWrap.add(downloadButton);
-        gridWrap.setPreferredSize(new Dimension(downloadButton.getPreferredSize().width, 50));
-        gridWrap.setOpaque(false);
-        flowWrap.add(gridWrap);
-        divider.add(gridBag, BorderLayout.WEST);
-        divider.add(flowWrap, BorderLayout.EAST);
-        divider.setOpaque(true);
-        divider.setBackground(Global.darkGray);
-        mainPanel.add(BorderLayout.NORTH, divider);
-        //frame.removeAll();
-        frame.setContentPane(mainPanel);
+        navBarPane.add(downloadButton, BorderLayout.EAST);
 
-        if(!settingUp) loadingImg.setVisible(false);
-        else loadingImg.setVisible(true);
+
+        for(Component comp : contentPane.getComponents()) {
+            if(!comp.equals(navBarPane)) {
+                contentPane.remove(comp);
+            }
+        }
+        contentPane.add(mainPanel, BorderLayout.CENTER);
+        contentPane.revalidate();
 
         downloadButton.addActionListener(startDownloadProcess);
     }
@@ -202,8 +309,6 @@ public class Main {
         if(fn == null) return;
         else DownloadManager.output = new File(fc.getDirectory() + "/" + fn);
         System.setProperty("apple.awt.fileDialogForDirectories", "false");
-
-        loadingImg.setVisible(true);
 
         if(DownloadManager.output != null) {
             DownloadManager.temp = new File(DownloadManager.output.getAbsolutePath() + "/_temp");
@@ -221,7 +326,10 @@ public class Main {
             });
         });
 
-        if(!toDownload.isEmpty()) setupTracklist(toDownload);
+        if(!toDownload.isEmpty()) {
+            navBarPane.remove(downloadButton);
+            setupTracklist(toDownload);
+        }
     };
 
     public void setupTracklist(ArrayList<Playlist> toDownload) {
@@ -262,8 +370,14 @@ public class Main {
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(BorderLayout.CENTER, scroll);
         mainPanel.setOpaque(false);
-        //frame.removeAll();
-        frame.setContentPane(mainPanel);
+
+        for(Component comp : contentPane.getComponents()) {
+            if(!comp.equals(navBarPane)) {
+                contentPane.remove(comp);
+            }
+        }
+        contentPane.add(mainPanel, BorderLayout.CENTER);
+        contentPane.revalidate();
 
         new Thread(() -> {
             new DownloadManager(toDownload.toArray(new Playlist[toDownload.size()]));
@@ -282,11 +396,7 @@ public class Main {
     }
 
     private void initialize() throws Exception {
-        Global.fontNormal = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Montserrat-Light.otf"));
-        Global.fontThin = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Montserrat-Hairline.otf"));
-        Global.fontBold = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Montserrat-Regular.otf"));
-
         //set up paths to exes, extract from jar if exported
-        new JarHandler().run();
+        new Thread(new JarHandler()).start();
     }
 }

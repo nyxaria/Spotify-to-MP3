@@ -1,0 +1,9 @@
+
+‡"squid:ClassVariableVisibilityCheck"OMake out a static final constant or non-public and provide accessors if needed.(ı®×°şÿÿÿÿ8ºçºîµ+
+‰"squid:ClassVariableVisibilityCheck"QMake speed a static final constant or non-public and provide accessors if needed.(ë°¥Óüÿÿÿÿ8Å©Şêµ+
+…"squid:SwitchLastCaseIsDefaultCheck"YComplete cases by adding the missing enum constants or add a default case to this switch.(ş™ÅŞ
+ysquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Â˜µĞşÿÿÿÿ8¹ªÄêµ+
+„squid:S1151"jReduce this switch case number of lines from 12 to at most 5, for example by extracting code into methods.(õê½şÿÿÿÿ
+‡"squid:ClassVariableVisibilityCheck"TMake progress a static final constant or non-public and provide accessors if needed.(Ø˜Ñ‹8Å©Şêµ+
+ƒ"squid:ClassVariableVisibilityCheck"QMake state a static final constant or non-public and provide accessors if needed.(Œøô)8ÁÌŞêµ+
+Csquid:S1948"'Make "track" transient or serializable.(­ŠƒÊ8Ó÷êµ+

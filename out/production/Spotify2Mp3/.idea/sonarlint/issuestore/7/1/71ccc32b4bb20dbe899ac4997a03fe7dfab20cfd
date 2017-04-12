@@ -1,0 +1,36 @@
+
+Hsquid:S1602",Remove useless curly braces around statement(–óÑ¢8—¾õíµ+
+Ysquid:S1213"8Move this variable to comply with Java Code Conventions.(Ò¿Á©úÿÿÿÿ8Ü°‡ìµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ü°‡ìµ+
+Tsquid:S1213"8Move this variable to comply with Java Code Conventions.(ç…ı8Àóİìµ+
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(‘™Ğú8”¸‰íµ+
+"squid:ClassVariableVisibilityCheck"VMake loadingImg a static final constant or non-public and provide accessors if needed.(Çõ°·úÿÿÿÿ8™áíµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œº„íµ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(•¾ÄÔúÿÿÿÿ8¨ôîµ+
+–squid:S1319"uThe type of the "toDownload" object should be an interface such as "List" rather than the implementation "ArrayList".(ÙÏˆœúÿÿÿÿ8±®”íµ+
+Qsquid:S1444"0Make this "public static loadingImg" field final(Çõ°·úÿÿÿÿ8™áíµ+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(îŞÉô8Ü°‡ìµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8Ü°‡ìµ+
+esquid:S1188"DReduce this lambda expression number of lines from 26 to at most 20.(‘Éˆÿÿÿÿÿ8Ğ€Ëíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(¸•è¶ùÿÿÿÿ8ÿŸúíµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(ÑÊ ÷8ˆ¿“íµ+
+asquid:S1132"FMove the "" string literal on the left side of this string comparison.(Á›…l8Àóİìµ+
+Hsquid:S1602",Remove useless curly braces around statement(¥—ığ8¬¤Ëíµ+
+Lsquid:S1444"+Make this "public static frame" field final(¹å‘şøÿÿÿÿ8Ü°‡ìµ+
+csquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Éêœ‘8¬¤Ëíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(ïÂÑˆüÿÿÿÿ8™áíµ+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(İÒî8Š°„ìµ+
+\squid:S1213";Move this constructor to comply with Java Code Conventions.(ú„üÿÿÿÿ8Ü°‡ìµ+
+dsquid:HiddenFieldCheck"8Rename "grid" which hides the field declared at line 33.(–Ë„¡øÿÿÿÿ8ˆ¿“íµ+
+Ysquid:S1213"8Move this variable to comply with Java Code Conventions.(‘Éˆÿÿÿÿÿ8Ğ€Ëíµ+
+ysquid:S1450"]Remove the "downloadButton" field and declare it as a local variable in the relevant methods.(İõæÔ8Ü°‡ìµ+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·ÖºÑ8ÉÎîêµ+
+"squid:ClassVariableVisibilityCheck"UMake settingUp a static final constant or non-public and provide accessors if needed.(ç¦Êùÿÿÿÿ8ø”âíµ+
+Asquid:S1166"%Either log or rethrow this exception.(ï­£Ä8œº„íµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(¢½²ÿÿÿÿÿ8¹—Ííµ+
+‰"squid:ClassVariableVisibilityCheck"QMake frame a static final constant or non-public and provide accessors if needed.(¹å‘şøÿÿÿÿ8Ü°‡ìµ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(•¾ÄÔúÿÿÿÿ8Öä‘îµ+
+Psquid:S1444"/Make this "public static settingUp" field final(ç¦Êùÿÿÿÿ8ø”âíµ+
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(—ô§‰8ÿŸúíµ+
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(ÅˆŠº8ÿŸúíµ+

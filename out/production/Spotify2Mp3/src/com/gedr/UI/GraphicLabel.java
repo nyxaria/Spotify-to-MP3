@@ -43,7 +43,7 @@ public class GraphicLabel extends JLabel {
                         Global.darkGray.getBlue() + 40 - 10*Integer.parseInt(progress)));
                 g2.fillRect(xOff, 0, getHeight(), getPreferredSize().height);
                 break;
-            case RETRYING:
+            case CONVERTING:
                 g2.setColor(Global.darkGray);
                 g2.fillRect(xOff, 0, getHeight(), getHeight());
                 g2.setColor(Global.spotifyGreen);

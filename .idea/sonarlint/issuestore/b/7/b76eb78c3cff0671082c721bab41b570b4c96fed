@@ -1,0 +1,19 @@
+
+Fsquid:S00108")Either remove or fill this block of code.(Öİ—«8Ä½Öìµ+
+‡"squid:ClassVariableVisibilityCheck"OMake red a static final constant or non-public and provide accessors if needed.(ø¯¨èøÿÿÿÿ8áö¶îµ+
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Â˜µĞşÿÿÿÿ
+„"squid:ClassVariableVisibilityCheck"SMake running a static final constant or non-public and provide accessors if needed.(§’¹éùÿÿÿÿ
+Š"squid:ClassVariableVisibilityCheck"RMake thread a static final constant or non-public and provide accessors if needed.(ÌÔáĞùÿÿÿÿ8şƒ÷êµ+
+xsquid:S1188"\Reduce this anonymous class number of lines from 24 to at most 20, or make it a named class.(ª›ŒÀ8¼–îµ+
+Hsquid:S1948"'Make "shape" transient or serializable.(ß‡’ÿÿÿÿÿ8áö¶îµ+
+†"squid:ClassVariableVisibilityCheck"SMake loading a static final constant or non-public and provide accessors if needed.(¢È”è8áö¶îµ+
+Fsquid:S1166"%Either log or rethrow this exception.(…ÿÁ ùÿÿÿÿ8¼–îµ+
+Isquid:S1948"(Make "thread" transient or serializable.(ÌÔáĞùÿÿÿÿ8şƒ÷êµ+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(ÈÊ“À8şƒ÷êµ+
+[squid:S1161":Add the "@Override" annotation above this method signature(¼üÛèÿÿÿÿÿ8şƒ÷êµ+
+jsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ŸÍô˜8şƒ÷êµ+
+n
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ë’Üåüÿÿÿÿ8şƒ÷êµ+
+Tsquid:UselessParenthesesCheck"!Remove those useless parentheses.(‘ÿÑ®øÿÿÿÿ8şƒ÷êµ+
+Ksquid:S00108")Either remove or fill this block of code.(ë’Üåüÿÿÿÿ8şƒ÷êµ+
+Dsquid:S1604"(Make this anonymous inner class a lambda(¼­¤¯8şƒ÷êµ+

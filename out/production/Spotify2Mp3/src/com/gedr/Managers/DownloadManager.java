@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class DownloadManager {
 
     public enum States {
-        QUEUE, RUNNING, DONE, RETRYING, EXTRACTING_DONE, ERROR, DOWNLOADING, EXTRACTING
+        QUEUE, RUNNING, DONE, CONVERTING, EXTRACTING_DONE, ERROR, DOWNLOADING, EXTRACTING
     }
 
     Playlist[] playlists;
@@ -125,31 +125,22 @@ public class DownloadManager {
 
                 String duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
                 String quality = "";
-                //String duration = "";
-                url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 1:
                 keyword = track.name.replace("[", "").replace("]", "").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
-                //duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
-                duration = "";
-                //quality = "videoDefinition=high&";
-                quality = "";
-                url = "https://www.googleapis.com/youtube/v3/search?" + duration + quality + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 2:
                 keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0].replace("$", "s").replace("[", " ").replace("]", " ") + " official lyrics" + (track.explicit ? " explicit" : "");
                 keyword = keyword.replace(" ", "+");
-                //duration = "sp=" + ((track.duration / 60) > 4 ? "medium" : "short") + "&";
-                duration = "";
-                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 3:
                 keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0] + " lyrics";
                 keyword = keyword.replace(" ", "+");
-                duration = "";
-
-                url = "https://www.googleapis.com/youtube/v3/search?" + duration + "type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
+                url = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=1&order=viewCount&q=" + keyword + "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w";
                 break;
             case 4:
                 keyword = track.name.replace("[", " ").replace("]", " ").replace("(", "").replace(")", "").replace(".", "").replace("\"", "") + " " + track.artists[0];
@@ -172,7 +163,7 @@ public class DownloadManager {
                 return findYoutubeUri(currentTrack, -1);
 
         }
-        Document doc = null;
+        Document doc;
 
         try {
             doc = Jsoup.connect(url).ignoreContentType(true).timeout(6 * 1000).get();
@@ -422,7 +413,7 @@ public class DownloadManager {
                         int m = Integer.parseInt(time.substring(2, 4));
                         int s = Integer.parseInt(time.substring(4, 6));
                         s += m * 60 + h * 60 * 60;
-                        updateUI(currentTrack, States.RETRYING, s + "", "");
+                        updateUI(currentTrack, States.CONVERTING, s + "", "");
                     }
                     if(line.startsWith("video:")) {
                         downloading = false;

@@ -12,9 +12,6 @@ import com.wrapper.spotify.models.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gedr on 29/07/2016.
- */
 public class SpotifySession {
     String id;
     Api api;
@@ -25,7 +22,6 @@ public class SpotifySession {
     }
 
     public void startUp() {
-
         api = Api.builder().clientId(Global.clientId).clientSecret(Global.secret).build();
 
         final ClientCredentialsGrantRequest request = api.clientCredentialsGrant().build();
@@ -63,11 +59,10 @@ public class SpotifySession {
             e.getStackTrace();
         }
         return playlistList;
-        //return playlistList.toArray(new Playlist[playlistList.size()]);
     }
 
     public com.gedr.Modules.Track[] getTracks(com.gedr.Modules.Playlist playlist) {
-        PlaylistTracksRequest request = null;
+        PlaylistTracksRequest request;
         ArrayList<com.gedr.Modules.Track> trackList = new ArrayList<>();
 
         int offset = 0;
@@ -92,8 +87,6 @@ public class SpotifySession {
 
             } catch(Exception e) {
                 e.printStackTrace();
-                //playlist.tracks = trackList.toArray(new Track[trackList.size()]);
-                //return playlist.tracks;
             }
         }
         playlist.tracks = trackList.toArray(new com.gedr.Modules.Track[trackList.size()]);

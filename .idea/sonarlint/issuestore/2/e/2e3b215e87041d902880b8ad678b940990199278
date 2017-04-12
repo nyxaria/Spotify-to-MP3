@@ -1,0 +1,15 @@
+
+Gsquid:UselessParenthesesCheck"!Remove those useless parentheses.(šÉ»<
+Gsquid:UselessParenthesesCheck"!Remove those useless parentheses.(šÉ»<
+Gsquid:UselessParenthesesCheck"!Remove those useless parentheses.(šÉ»<
+Gsquid:UselessParenthesesCheck"!Remove those useless parentheses.(šÉ»<
+v%squid:RedundantThrowsDeclarationCheck"GRemove the redundant '!unknownSymbol!' thrown exception declaration(s).(‰ªÅ©
+[squid:S1192"FDefine a constant instead of duplicating this literal "UTF-8" 6 times.(ñæž 
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(«Ó® þÿÿÿÿ
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(«Ó® þÿÿÿÿ
+`squid:S1132"FMove the "" string literal on the left side of this string comparison.(óÕ­ˆþÿÿÿÿ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(é®ñÉ
+Gsquid:S1135"2Complete the task associated to this TODO comment.(Ã“ÍÂ
+:squid:S1166"%Either log or rethrow this exception.(ï­£Ä
+–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ž¤û‰
+csquid:UselessImportCheck"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“

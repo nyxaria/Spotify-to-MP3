@@ -1,0 +1,24 @@
+
+psquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(®Ñšm8½Ô½îµ+
+Asquid:S1166"%Either log or rethrow this exception.(ŸäÁ‚8½Ô½îµ+
+^squid:HiddenFieldCheck"7Rename "row" which hides the field declared at line 18.(«¨Ö¢8½Ô½îµ+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(²“ãÑ8½Ô½îµ+
+=squid:S1643"Use a StringBuilder instead.(ç•Äèÿÿÿÿÿ8½Ô½îµ+
+ssquid:S00117"VRename this local variable name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¸ö8½Ô½îµ+
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Â˜µĞşÿÿÿÿ
+Psquid:S1066"/Merge this if statement with the enclosing one.(”ğ¸êúÿÿÿÿ8½Ô½îµ+
+n
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(”ğ¸êúÿÿÿÿ8½Ô½îµ+
+Dsquid:S1148"#Use a logger to log this exception.(Âşÿâûÿÿÿÿ8½Ô½îµ+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(Œû—á8½Ô½îµ+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ö¥Óî8½Ô½îµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(¶®¾šşÿÿÿÿ8½Ô½îµ+
+^squid:HiddenFieldCheck"7Rename "row" which hides the field declared at line 18.(«¨Ö¢8½Ô½îµ+
+{"squid:ClassVariableVisibilityCheck"OMake row a static final constant or non-public and provide accessors if needed.(æ³ÁÍ
+‰"squid:ClassVariableVisibilityCheck"VMake checkBoxes a static final constant or non-public and provide accessors if needed.(ƒú´›8¼´½îµ+
+‘squid:S1319"uThe type of the "checkBoxes" object should be an interface such as "List" rather than the implementation "ArrayList".(ƒú´›8¼´½îµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 3 statements were found on this line.(”ğ¸êúÿÿÿÿ8ûÔõëµ+
+}squid:S1188"\Reduce this anonymous class number of lines from 31 to at most 20, or make it a named class.(ªõ×€ûÿÿÿÿ8½Ô½îµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(ÛÍ™Úúÿÿÿÿ8½Ô½îµ+
+Gsquid:S1905"&Remove this unnecessary cast to "int".(ÖëÀ‹ùÿÿÿÿ8½Ô½îµ+
+Lsquid:S1948"+Make "playlists" transient or serializable.(á¨ìšşÿÿÿÿ8½Ô½îµ+

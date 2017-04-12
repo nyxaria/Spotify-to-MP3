@@ -55,4 +55,9 @@ public class Global {
         return output.toString();
 
     }
+
+    public static void shutdown() {
+        if(DownloadManager.temp != null)
+            DownloadManager.temp.delete();
+    }
 }

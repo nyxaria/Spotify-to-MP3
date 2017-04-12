@@ -1,0 +1,30 @@
+
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¾¢üîùÿÿÿÿ
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(Õ§îŽþÿÿÿÿ8¯¾æíµ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8¯¾æíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(žûúŠýÿÿÿÿ8ÿŸúíµ+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(“–ýþ8¯¾æíµ+
+Rsquid:S2696"6Make the enclosing method "static" or remove this set.(·ÖÖë8ÿŸúíµ+
+Ssquid:S1854"7Remove this useless assignment to local variable "jar".(®Î©Š8¯¾æíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(ÆÎ¸ƒûÿÿÿÿ8ÿŸúíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(åª„©úÿÿÿÿ8ÿŸúíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(ÆÎ¸ƒûÿÿÿÿ8ÿŸúíµ+
+Vsquid:S1161":Add the "@Override" annotation above this method signature(“–ýþ8¯¾æíµ+
+[
+squid:S899"@Do something with the "boolean" value returned by "setWritable".(œ…Õ¾8¯¾æíµ+
+Lsquid:S1659"+Declare "destDirectory" on a separate line.(Ñ´÷°ÿÿÿÿÿ8¯¾æíµ+
+1squid:S2095"Close this "JarFile".(óâªˆ8¯¾æíµ+
+i
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ø«âÆ8¯¾æíµ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¹®”Œ8¯¾æíµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ý¾8¯¾æíµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¯¾æíµ+
+:squid:S2095"Close this "FileOutputStream".(²¿‘‚8¯¾æíµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(Ž÷ˆ•úÿÿÿÿ8¯¾æíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(’óòïùÿÿÿÿ8ÿŸúíµ+
+]
+squid:S899"BDo something with the "boolean" value returned by "setExecutable".(ÅÕ‹8¥Çäíµ+
+`
+squid:S899"@Do something with the "boolean" value returned by "setReadable".(•Âþüÿÿÿÿ8¥Çäíµ+
+Wsquid:S2696"6Make the enclosing method "static" or remove this set.(ÆÎ¸ƒûÿÿÿÿ8ÿŸúíµ+

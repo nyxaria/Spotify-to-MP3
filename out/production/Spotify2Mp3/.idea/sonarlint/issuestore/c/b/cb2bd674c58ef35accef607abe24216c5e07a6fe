@@ -1,0 +1,101 @@
+
+gsquid:S1132"FMove the "" string literal on the left side of this string comparison.(Æ¥°Ìùÿÿÿÿ8œÇÆîµ+
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ8œÇÆîµ+
+_squid:S1226">Introduce a new variable instead of reusing the parameter "i".(±…ûÿÿÿÿ8œÇÆîµ+
+ysquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¾¢üîùÿÿÿÿ8ùîÂêµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œÇÆîµ+
+Šsquid:S1151"iReduce this switch case number of lines from 7 to at most 5, for example by extracting code into methods.(ÌÊëÎüÿÿÿÿ8¸¯Àîµ+
+isquid:S1192"HDefine a constant instead of duplicating this literal "[^\\d.]" 4 times.(³¢¿†ûÿÿÿÿ8œÇÆîµ+
+bsquid:S1226"AIntroduce a new variable instead of reusing the parameter "time".(»İÏşÿÿÿÿÿ8œÇÆîµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(–Æàı8œÇÆîµ+
+Xsquid:S1854"<Remove this useless assignment to local variable "complete".(Å ·Ê8œÇÆîµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œÇÆîµ+
+T"squid:SwitchLastCaseIsDefaultCheck""Add a default case to this switch.(ìúÇV8¸¯Àîµ+
+@squid:S2131"Use "Integer.toString" instead.(á›•Ğıÿÿÿÿ8œÇÆîµ+
+Isquid:S1604"(Make this anonymous inner class a lambda(Ô–Ùışÿÿÿÿ8¸¯Àîµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œÇÆîµ+
+Ksquid:S1444"*Make this "public static temp" field final(åÍÉªşÿÿÿÿ8¸¯Àîµ+
+=squid:S1643"Use a StringBuilder instead.(ç•Äèÿÿÿÿÿ8¸¯Àîµ+
+_squid:S2583"CChange this condition so that it does not always evaluate to "true"(åÂ£8œÇÆîµ+
+hsquid:S1192"LDefine a constant instead of duplicating this literal "next_track" 10 times.(ÀÆœ8¸¯Àîµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(–Æàı8œÇÆîµ+
+:squid:S2131"Use "Integer.toString" instead.(’‰ºl8œÇÆîµ+
+gsquid:S1132"FMove the "" string literal on the left side of this string comparison.(¾ÊÁ©úÿÿÿÿ8œÇÆîµ+
+Msquid:S1444",Make this "public static output" field final(¬Ò¿êùÿÿÿÿ8áßèêµ+
+Š"squid:ClassVariableVisibilityCheck"RMake output a static final constant or non-public and provide accessors if needed.(¬Ò¿êùÿÿÿÿ8áßèêµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8œÇÆîµ+
+Osquid:UselessParenthesesCheck"!Remove those useless parentheses.(±ŞÁ8œÇÆîµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œÇÆîµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(ú›²€ÿÿÿÿÿ8œÇÆîµ+
+€squid:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Ò¨ïıÿÿÿÿ8œÇÆîµ+
+gsquid:S3027"FPut single-quotes around '.' to use the faster "indexOf(char)" method.(àô¸Öÿÿÿÿÿ8œÇÆîµ+
+qsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(Á¾€Ì8œÇÆîµ+
+gsquid:S1192"FDefine a constant instead of duplicating this literal "items" 3 times.(ö†Ñ‘ûÿÿÿÿ8œÇÆîµ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¼ù¢¹şÿÿÿÿ8œÇÆîµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8œÇÆîµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8œÇÆîµ+
+bsquid:S1132"FMove the "" string literal on the left side of this string comparison.(Û§Š8œÇÆîµ+
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(åéÎøÿÿÿÿ8¸¯Àîµ+
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(Ä½†„şÿÿÿÿ8œÇÆîµ+
+Asquid:S1166"%Either log or rethrow this exception.(ï­£Ä8œÇÆîµ+
+Ysquid:S1854"8Remove this useless assignment to local variable "line".(ÑÕšøÿÿÿÿ8œÇÆîµ+
+n
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(³¢¿†ûÿÿÿÿ8œÇÆîµ+
+lsquid:S1132"PMove the "next_track" string literal on the left side of this string comparison.(ÀÆœ8¸¯Àîµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8œÇÆîµ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ñòœ‰8¸¯Àîµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8œÇÆîµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(¡ÎŞèøÿÿÿÿ8œÇÆîµ+
+‚squid:S1192"aDefine a constant instead of duplicating this literal "https://www.youtube.com/watch?v=" 4 times.(ï‰èŸùÿÿÿÿ8¸¯Àîµ+
+Šsquid:S1151"iReduce this switch case number of lines from 6 to at most 5, for example by extracting code into methods.(ªëÅŞúÿÿÿÿ8¸¯Àîµ+
+Bsquid:S2131"!Use "Character.toString" instead.(¾ÊÁ©úÿÿÿÿ8œÇÆîµ+
+bsquid:S1226"AIntroduce a new variable instead of reusing the parameter "time".(¾€Àıüÿÿÿÿ8œÇÆîµ+
+Osquid:UselessParenthesesCheck"!Remove those useless parentheses.(×ĞïÆ8œÇÆîµ+
+…squid:S1151"iReduce this switch case number of lines from 6 to at most 5, for example by extracting code into methods.(¥ÖÇº8¸¯Àîµ+
+osquid:S1192"UDefine a constant instead of duplicating this literal "URL not found for \"" 5 times.(¯¿ø—ùÿÿÿÿ
+csquid:S1192"HDefine a constant instead of duplicating this literal " lyrics" 3 times.(Ñ†€:8¸¯Àîµ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(û‹ä8¸¯Àîµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8œÇÆîµ+
+vsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(§ºüÿÿÿÿ8œÇÆîµ+
+Wsquid:S1147";Remove this call to "exit" or ensure it is really required.(¯á8œÇÆîµ+
+U
+squid:S899";Do something with the "boolean" value returned by "delete".(¾ğ½w8œÇÆîµ+
+i
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¼ÙØı8œÇÆîµ+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(¡ŸÃı8œÇÆîµ+
+Asquid:S1166"%Either log or rethrow this exception.(ï­£Ä8œÇÆîµ+
+squid:S1192"nDefine a constant instead of duplicating this literal "https://www.googleapis.com/youtube/v3/search?" 4 times.(óÊ¾Êøÿÿÿÿ8¸¯Àîµ+
+Ysquid:S1213"8Move this variable to comply with Java Code Conventions.(ÜÓÓ¹ùÿÿÿÿ8œÇÆîµ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ıÈÕÆ8¸¯Àîµ+
+bsquid:S1132"FMove the "" string literal on the left side of this string comparison.(–çÅâ8¸¯Àîµ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ñòœ‰8¸¯Àîµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(Èãêš8œÇÆîµ+
+Ssquid:UselessImportCheck"*Remove this unused import 'com.gedr.Main'.(–Ì˜Ñ8¯†Ãîµ+
+ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(Ü–âÅøÿÿÿÿ8¸¯Àîµ+
+jsquid:S1132"IMove the "100" string literal on the left side of this string comparison.(³¢¿†ûÿÿÿÿ8œÇÆîµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(–Æàı8œÇÆîµ+
+‰squid:S1192"hDefine a constant instead of duplicating this literal "type=video&part=snippet&maxResults=1&q=" 3 times.(óÊ¾Êøÿÿÿÿ8¸¯Àîµ+
+lsquid:S1192"PDefine a constant instead of duplicating this literal "\" { keyword=\"" 3 times.(–Æàı8œÇÆîµ+
+Psquid:S1066"/Merge this if statement with the enclosing one.(Ó—¥ûÿÿÿÿ8¸¯Àîµ+
+squid:S1192"mDefine a constant instead of duplicating this literal "&key=AIzaSyDMUtaSnR0hadvSt4jPCCoPJeRh5LbiU5w" 6 times.(óÊ¾Êøÿÿÿÿ8¸¯Àîµ+
+n
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ú›²€ÿÿÿÿÿ8œÇÆîµ+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(“–ış8œÇÆîµ+
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(¯¿ø—ùÿÿÿÿ8¸¯Àîµ+
+[
+squid:S106";Replace this usage of System.out or System.err by a logger.(ñ—¸½úÿÿÿÿ8œÇÆîµ+
+gsquid:S3027"FPut single-quotes around '.' to use the faster "indexOf(char)" method.(àô¸Öÿÿÿÿÿ8œÇÆîµ+
+ˆ"squid:ClassVariableVisibilityCheck"PMake temp a static final constant or non-public and provide accessors if needed.(åÍÉªşÿÿÿÿ8¸¯Àîµ+
+V
+squid:S106";Replace this usage of System.out or System.err by a logger.(ĞÀÜ8œÇÆîµ+
+fsquid:HiddenFieldCheck":Rename "output" which hides the field declared at line 35.(Ò¨ïıÿÿÿÿ8œÇÆîµ+
+[
+squid:S899";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ8œÇÆîµ+

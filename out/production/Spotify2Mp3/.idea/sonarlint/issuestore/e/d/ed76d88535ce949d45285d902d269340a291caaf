@@ -1,0 +1,7 @@
+
+Msquid:UselessParenthesesCheck"!Remove those useless parentheses.(·æ©Õýÿÿÿÿ
+=squid:S1604"(Make this anonymous inner class a lambda(ÉãÃ®
+=squid:S1172"(Remove this unused method parameter "i".(€€ºÿ
+?squid:S00108")Either remove or fill this block of code.(Á“ðã
+<squid:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(Â˜µÐþÿÿÿÿ
