@@ -29,3 +29,9 @@ F
 src/com/gedr/Main.java,7/1/71ccc32b4bb20dbe899ac4997a03fe7dfab20cfd
 Q
 !src/com/gedr/UI/GraphicLabel.java,d/c/dc7d111187bbfb68daebaaec15cc98cf88505a8b
+F
+src/com/gedr/UI/U.java,0/6/068ce0023fe2c07e8904e8726f6619f14e398536
+K
+src/com/gedr/UI/ULabel.java,a/d/ad90cde56f0cc4839433f3251e8e3992f23c04fd
+L
+src/com/gedr/UI/UButton.java,7/0/7053fd8dcc54e37b16845209f0173ecec500db24

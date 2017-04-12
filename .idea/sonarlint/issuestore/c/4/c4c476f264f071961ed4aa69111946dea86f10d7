@@ -1,21 +1,23 @@
 
-Š"squid:ClassVariableVisibilityCheck"RMake ffmpeg a static final constant or non-public and provide accessors if needed.(«¸îüÿÿÿÿ8ŒşÔíµ+
-€squid:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Ò¨ïıÿÿÿÿ8Æ¨íµ+
-vsquid:S3008"URename this field "youtube_dl" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
-Qsquid:S1444"0Make this "public static youtube_dl" field final(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
-|squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(àí¹ÿÿÿÿÿ8¿Éñêµ+
-‡"squid:ClassVariableVisibilityCheck"TMake fontThin a static final constant or non-public and provide accessors if needed.(„¤ÁÁ8Úìêµ+
-Jsquid:S1444".Make this "public static fontBold" field final(“ ë†8Úìêµ+
-Usquid:S1118":Add a private constructor to hide the implicit public one.(¦¹¼8Ÿä¨íµ+
-‡"squid:ClassVariableVisibilityCheck"TMake fontBold a static final constant or non-public and provide accessors if needed.(“ ë†8Úìêµ+
-"squid:ClassVariableVisibilityCheck"VMake youtube_dl a static final constant or non-public and provide accessors if needed.(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
-Jsquid:S1444".Make this "public static fontThin" field final(„¤ÁÁ8Úìêµ+
 "squid:ClassVariableVisibilityCheck"VMake fontNormal a static final constant or non-public and provide accessors if needed.(ş…ƒÿÿÿÿÿ8Úìêµ+
+€squid:S1149"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Ò¨ïıÿÿÿÿ8Æ¨íµ+
+‡"squid:ClassVariableVisibilityCheck"TMake fontBold a static final constant or non-public and provide accessors if needed.(“ ë†8Úìêµ+
 tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(àí¹ÿÿÿÿÿ8¿Éñêµ+
-Qsquid:S1444"0Make this "public static fontNormal" field final(ş…ƒÿÿÿÿÿ8Úìêµ+
-tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(ÒöÇàüÿÿÿÿ8¿Éñêµ+
-Msquid:S1444",Make this "public static ffmpeg" field final(«¸îüÿÿÿÿ8ŒşÔíµ+
-Asquid:S1166"%Either log or rethrow this exception.(”ı¾8Æ¨íµ+
-|squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÒöÇàüÿÿÿÿ8¿Éñêµ+
-rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¾¢üîùÿÿÿÿ
+Š"squid:ClassVariableVisibilityCheck"RMake ffmpeg a static final constant or non-public and provide accessors if needed.(«¸îüÿÿÿÿ8ŒşÔíµ+
 Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Æ¨íµ+
+|squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(àí¹ÿÿÿÿÿ8¿Éñêµ+
+Msquid:S1444",Make this "public static ffmpeg" field final(«¸îüÿÿÿÿ8ŒşÔíµ+
+‡"squid:ClassVariableVisibilityCheck"TMake fontThin a static final constant or non-public and provide accessors if needed.(„¤ÁÁ8Úìêµ+
+vsquid:S3008"URename this field "youtube_dl" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
+Usquid:S1118":Add a private constructor to hide the implicit public one.(¦¹¼8Ÿä¨íµ+
+[
+squid:S899";Do something with the "boolean" value returned by "delete".(éÓ•ôıÿÿÿÿ8Ôì ¶+
+Jsquid:S1444".Make this "public static fontThin" field final(„¤ÁÁ8Úìêµ+
+tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(ÒöÇàüÿÿÿÿ8¿Éñêµ+
+Jsquid:S1444".Make this "public static fontBold" field final(“ ë†8Úìêµ+
+"squid:ClassVariableVisibilityCheck"VMake youtube_dl a static final constant or non-public and provide accessors if needed.(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
+Asquid:S1166"%Either log or rethrow this exception.(”ı¾8Æ¨íµ+
+rsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¾¢üîùÿÿÿÿ
+|squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÒöÇàüÿÿÿÿ8¿Éñêµ+
+Qsquid:S1444"0Make this "public static youtube_dl" field final(‘¹÷ºûÿÿÿÿ8ŒşÔíµ+
+Qsquid:S1444"0Make this "public static fontNormal" field final(ş…ƒÿÿÿÿÿ8Úìêµ+

@@ -1,18 +1,18 @@
 
 O
-squid:S106";Replace this usage of System.out or System.err by a logger.(öÇÚı
-b
-squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¥§Ø
-:squid:S1166"%Either log or rethrow this exception.(”ı¾
+squid:S106";Replace this usage of System.out or System.err by a logger.(¸¶±š
 T
 squid:S106";Replace this usage of System.out or System.err by a logger.(îõÂúşÿÿÿÿ
 O
-squid:S106";Replace this usage of System.out or System.err by a logger.(ıìœÜ
-O
 squid:S106";Replace this usage of System.out or System.err by a logger.(ï½÷
-…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(íè…
-O
-squid:S106";Replace this usage of System.out or System.err by a logger.(¸¶±š
-Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ñ—íçµ+
 ysquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(¾¢üîùÿÿÿÿ8ãÍóêµ+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ñ—íçµ+
 :squid:S1166"%Either log or rethrow this exception.(”ı¾
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(öÇÚı
+O
+squid:S106";Replace this usage of System.out or System.err by a logger.(ıìœÜ
+b
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¥§Ø
+:squid:S1166"%Either log or rethrow this exception.(”ı¾
+…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(íè…
