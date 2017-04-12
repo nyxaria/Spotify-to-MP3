@@ -7,15 +7,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9fa8757-2007-40e1-a6a1-bb77eb745c54" name="Default" comment="version 1: everything seems to be in working order (fingers crossed)">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/U.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/UButton.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/gedr/UI/ULabel.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Spotify 2 MpX.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/exes/youtube-dl_old" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/exes/youtube-dl_old" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/exes/youtube-dl_old" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$States.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$States.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$StreamGobbler.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager$StreamGobbler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/DownloadManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/Global.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/Global.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/JarHandler.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/JarHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/Managers/SpotifySession.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/GraphicLabel$1.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/GraphicLabel$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/HintTextField.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/HintTextField.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/LoadingLabel.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/LoadingLabel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/SpotifyScroll.class" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/com/gedr/UI/SpotifyScroll.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Spotify2Mp3.iml" afterPath="$PROJECT_DIR$/Spotify2Mp3.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/libraries/se_michaelthelin_spotify_spotify_web_api_java_1_5_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/README.md" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Main.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/DownloadManager.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/DownloadManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/Global.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/Global.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/JarHandler.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/JarHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/SpotifySession.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/Managers/SpotifySession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/GraphicLabel.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/GraphicLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/SpotifyScroll.java" afterPath="$PROJECT_DIR$/out/production/Spotify2Mp3/src/com/gedr/UI/SpotifyScroll.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Main.java" afterPath="$PROJECT_DIR$/src/com/gedr/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/DownloadManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/Global.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/JarHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" afterPath="$PROJECT_DIR$/src/com/gedr/Managers/SpotifySession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/HintTextField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/LoadingLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" afterPath="$PROJECT_DIR$/src/com/gedr/UI/SpotifyScroll.java" />
     </list>
     <ignored path="Spotify 2 MpX.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -769,7 +799,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -781,7 +811,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329602" sideWeight="0.41180557" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31965175" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24236111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24236111" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
