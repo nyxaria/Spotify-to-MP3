@@ -1,7 +1,7 @@
 # Spotify to MP3
 A program that downloads your playlists from Spotify.
 
-Uses `youtube-dl` and `ffmpeg`, alongside the `Youtube` and `Spotify` API to get a `Spotify` playlist, extract it's tracklist, find a suitable video for each track, download and convert it to MP3 and save to disk.
+Uses `youtube-dl` and `ffmpeg`, alongside the `Youtube` and `Spotify` API to get a `Spotify` playlist, extract its tracklist, find a suitable video for each track, download and convert it to MP3 and save to disk.
 
 It is self-contained and is compatible with Windows and Mac.
 
